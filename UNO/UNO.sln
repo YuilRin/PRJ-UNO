@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNO", "UNO\UNO.csproj", "{DC9D1E87-574B-44B2-80AC-999AF41F8DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNO_server", "UNO server\UNO_server.csproj", "{5B91CCB4-8FB1-4FF3-B9A4-81D013CB39DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B91CCB4-8FB1-4FF3-B9A4-81D013CB39DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B91CCB4-8FB1-4FF3-B9A4-81D013CB39DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B91CCB4-8FB1-4FF3-B9A4-81D013CB39DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B91CCB4-8FB1-4FF3-B9A4-81D013CB39DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCEE19FF-557B-44A7-8148-3B2C4D259AA7}
+	EndGlobalSection
+EndGlobal

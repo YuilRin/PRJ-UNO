@@ -1,0 +1,13 @@
+E:\Linh\UNO\UNO\bin\Debug\UNO.exe.config
+E:\Linh\UNO\UNO\bin\Debug\UNO.exe
+E:\Linh\UNO\UNO\bin\Debug\UNO.pdb
+E:\Linh\UNO\UNO\obj\Debug\UNO.csproj.AssemblyReference.cache
+E:\Linh\UNO\UNO\obj\Debug\UNO.Properties.Resources.resources
+E:\Linh\UNO\UNO\obj\Debug\UNO.csproj.GenerateResource.cache
+E:\Linh\UNO\UNO\obj\Debug\UNO.csproj.CoreCompileInputs.cache
+E:\Linh\UNO\UNO\obj\Debug\UNO.exe
+E:\Linh\UNO\UNO\obj\Debug\UNO.pdb
+E:\Linh\UNO\UNO\obj\Debug\UNO.Player.resources
+E:\Linh\UNO\UNO\obj\Debug\UNO.Begin.resources
+E:\Linh\UNO\UNO\obj\Debug\UNO.Form1.resources
+E:\Linh\UNO\UNO\obj\Debug\UNO.Lobby.resources
