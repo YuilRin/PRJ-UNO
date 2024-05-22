@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UNO_server
+namespace UNO
 {
     public partial class Server : Form
     {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Linh\\UNO\\UNO server\\UNO_server.csproj": {}
+    "E:\\Linh\\PRJ-UNO\\UNO\\UNO server\\UNO_server.csproj": {}
   },
   "projects": {
-    "E:\\Linh\\UNO\\UNO server\\UNO_server.csproj": {
+    "E:\\Linh\\PRJ-UNO\\UNO\\UNO server\\UNO_server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Linh\\UNO\\UNO server\\UNO_server.csproj",
+        "projectUniqueName": "E:\\Linh\\PRJ-UNO\\UNO\\UNO server\\UNO_server.csproj",
         "projectName": "UNO_server",
-        "projectPath": "E:\\Linh\\UNO\\UNO server\\UNO_server.csproj",
+        "projectPath": "E:\\Linh\\PRJ-UNO\\UNO\\UNO server\\UNO_server.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\Linh\\UNO\\UNO server\\obj\\",
+        "outputPath": "E:\\Linh\\PRJ-UNO\\UNO\\UNO server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

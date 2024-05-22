@@ -45,7 +45,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.player3 = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.Next = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
@@ -59,6 +59,15 @@
             this.PlusTable = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.player1 = new System.Windows.Forms.TextBox();
+            this.player4 = new System.Windows.Forms.TextBox();
+            this.player2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.playid = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -81,7 +90,7 @@
             // phone
             // 
             this.phone.AutoSize = true;
-            this.phone.Location = new System.Drawing.Point(19, 198);
+            this.phone.Location = new System.Drawing.Point(10, 201);
             this.phone.Name = "phone";
             this.phone.Size = new System.Drawing.Size(46, 16);
             this.phone.TabIndex = 16;
@@ -90,7 +99,7 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(23, 160);
+            this.name.Location = new System.Drawing.Point(12, 160);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(44, 16);
             this.name.TabIndex = 17;
@@ -98,14 +107,14 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(113, 195);
+            this.txtPass.Location = new System.Drawing.Point(62, 198);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(100, 22);
             this.txtPass.TabIndex = 15;
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(113, 157);
+            this.txtFullName.Location = new System.Drawing.Point(62, 154);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(100, 22);
             this.txtFullName.TabIndex = 14;
@@ -158,7 +167,7 @@
             // 
             // Begin
             // 
-            this.Begin.Location = new System.Drawing.Point(490, 40);
+            this.Begin.Location = new System.Drawing.Point(699, 40);
             this.Begin.Name = "Begin";
             this.Begin.Size = new System.Drawing.Size(75, 23);
             this.Begin.TabIndex = 18;
@@ -168,7 +177,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 275);
+            this.pictureBox1.Location = new System.Drawing.Point(88, 278);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 131);
             this.pictureBox1.TabIndex = 19;
@@ -176,7 +185,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(140, 275);
+            this.pictureBox2.Location = new System.Drawing.Point(194, 278);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 131);
             this.pictureBox2.TabIndex = 19;
@@ -184,7 +193,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(281, 275);
+            this.pictureBox3.Location = new System.Drawing.Point(300, 278);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 131);
             this.pictureBox3.TabIndex = 19;
@@ -192,7 +201,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(428, 275);
+            this.pictureBox4.Location = new System.Drawing.Point(406, 278);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 131);
             this.pictureBox4.TabIndex = 19;
@@ -200,7 +209,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(558, 275);
+            this.pictureBox5.Location = new System.Drawing.Point(512, 278);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(100, 131);
             this.pictureBox5.TabIndex = 19;
@@ -208,22 +217,22 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(688, 275);
+            this.pictureBox6.Location = new System.Drawing.Point(618, 278);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(100, 131);
             this.pictureBox6.TabIndex = 19;
             this.pictureBox6.TabStop = false;
             // 
-            // textBox3
+            // player3
             // 
-            this.textBox3.Location = new System.Drawing.Point(439, 191);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 20;
+            this.player3.Location = new System.Drawing.Point(499, 140);
+            this.player3.Name = "player3";
+            this.player3.Size = new System.Drawing.Size(44, 22);
+            this.player3.TabIndex = 20;
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Location = new System.Drawing.Point(688, 98);
+            this.pictureBox7.Location = new System.Drawing.Point(370, 69);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(100, 131);
             this.pictureBox7.TabIndex = 19;
@@ -231,7 +240,7 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(439, 239);
+            this.Next.Location = new System.Drawing.Point(724, 386);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(75, 23);
             this.Next.TabIndex = 21;
@@ -241,7 +250,7 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(306, 245);
+            this.back.Location = new System.Drawing.Point(724, 328);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
             this.back.TabIndex = 22;
@@ -251,7 +260,7 @@
             // 
             // draw
             // 
-            this.draw.Location = new System.Drawing.Point(536, 127);
+            this.draw.Location = new System.Drawing.Point(724, 278);
             this.draw.Name = "draw";
             this.draw.Size = new System.Drawing.Size(75, 23);
             this.draw.TabIndex = 23;
@@ -261,7 +270,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(22, 424);
+            this.button1.Location = new System.Drawing.Point(97, 415);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 24;
@@ -271,7 +280,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(140, 424);
+            this.button2.Location = new System.Drawing.Point(205, 415);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 24;
@@ -281,7 +290,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(291, 424);
+            this.button3.Location = new System.Drawing.Point(316, 415);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 24;
@@ -291,7 +300,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(439, 424);
+            this.button4.Location = new System.Drawing.Point(421, 415);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 24;
@@ -301,7 +310,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(558, 424);
+            this.button5.Location = new System.Drawing.Point(524, 415);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 24;
@@ -311,7 +320,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(699, 424);
+            this.button6.Location = new System.Drawing.Point(631, 415);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 24;
@@ -321,7 +330,7 @@
             // 
             // PlusTable
             // 
-            this.PlusTable.Location = new System.Drawing.Point(377, 52);
+            this.PlusTable.Location = new System.Drawing.Point(694, 237);
             this.PlusTable.Name = "PlusTable";
             this.PlusTable.Size = new System.Drawing.Size(100, 22);
             this.PlusTable.TabIndex = 25;
@@ -329,26 +338,103 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 58);
+            this.label3.Location = new System.Drawing.Point(605, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 16);
             this.label3.TabIndex = 26;
             this.label3.Text = "Số cộng dồn";
-            this.label3.Visible = false;
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Location = new System.Drawing.Point(291, 98);
+            this.pictureBox8.Location = new System.Drawing.Point(21, 305);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(100, 131);
+            this.pictureBox8.Size = new System.Drawing.Size(44, 75);
             this.pictureBox8.TabIndex = 19;
             this.pictureBox8.TabStop = false;
+            // 
+            // player1
+            // 
+            this.player1.Location = new System.Drawing.Point(421, 34);
+            this.player1.Name = "player1";
+            this.player1.Size = new System.Drawing.Size(44, 22);
+            this.player1.TabIndex = 20;
+            // 
+            // player4
+            // 
+            this.player4.Location = new System.Drawing.Point(426, 218);
+            this.player4.Name = "player4";
+            this.player4.Size = new System.Drawing.Size(44, 22);
+            this.player4.TabIndex = 20;
+            // 
+            // player2
+            // 
+            this.player2.Location = new System.Drawing.Point(300, 140);
+            this.player2.Name = "player2";
+            this.player2.Size = new System.Drawing.Size(44, 22);
+            this.player2.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(367, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 16);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Player1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(496, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 16);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Player3";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(297, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 16);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Player2";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(367, 221);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Player4";
+            // 
+            // playid
+            // 
+            this.playid.Location = new System.Drawing.Point(694, 195);
+            this.playid.Name = "playid";
+            this.playid.Size = new System.Drawing.Size(100, 22);
+            this.playid.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(605, 195);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 16);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Lượt của ";
             // 
             // Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(806, 450);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.PlusTable);
             this.Controls.Add(this.button6);
@@ -360,7 +446,11 @@
             this.Controls.Add(this.draw);
             this.Controls.Add(this.back);
             this.Controls.Add(this.Next);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.player2);
+            this.Controls.Add(this.player4);
+            this.Controls.Add(this.player1);
+            this.Controls.Add(this.playid);
+            this.Controls.Add(this.player3);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -416,7 +506,7 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox player3;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Button back;
@@ -430,5 +520,14 @@
         private System.Windows.Forms.TextBox PlusTable;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.TextBox player1;
+        private System.Windows.Forms.TextBox player4;
+        private System.Windows.Forms.TextBox player2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox playid;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -128,16 +128,16 @@ namespace UNO
                     name.Visible = false;
                     phone.Visible = false;
                     label1.Visible = true; label2.Visible = true;
-                    textBox1.Visible = true; textBox2.Visible = true;   
+                    textBox1.Visible = true; textBox2.Visible = true;
                     textBox1.Text = ten;
                     textBox2.Text = mk;
                     Login.Visible = false;
-                   
-                    
-                        // Gửi thông tin đăng nhập lên server
-                        await writer.WriteLineAsync($"Login: {ten}, {mk}");
-                        await writer.FlushAsync();
-                    
+
+
+                    // Gửi thông tin đăng nhập lên server
+                    await writer.WriteLineAsync($"Login: {ten}, {mk}");
+                    await writer.FlushAsync();
+
                 }
                 catch (Exception ex)
                 {
@@ -188,7 +188,7 @@ namespace UNO
                     else if (messagee.StartsWith("IDplay: "))
                     {
                         Idplay = int.Parse(messagee.Split(':')[1].Trim());
-                        
+                        playid.Text=Idplay.ToString();
                     }
 
                     else if (messagee.StartsWith("Card:"))
@@ -214,25 +214,21 @@ namespace UNO
                     {
                         // Phân tích tin nhắn để lấy thông tin tên, loại và số của lá bài
                         string[] parts = messagee.Split(' ');
-                   if(Idplay==clientId)
+                        if(Idplay==clientId)
                         {
                                string card = parts[1];
                         plus = int.Parse(parts[2]);
                         PlusTable.Text=plus.ToString();
                         }    
-                     
-
-                        // Hiển thị tin nhắn cho người dùng
-                        MessageBox.Show($"Server requires you to play ");
-
-                        // Yêu cầu người dùng gửi một lá bài phù hợp hoặc rút số lá cần thiết
-                        
-                        
+                                             
                     }
-                    else
+                    else if(messagee.StartsWith("IDcards: "))
                     {
-                        // Xử lý các tin nhắn khác từ server
-                        // Cập nhật giao diện người dùng, hiển thị tin nhắn, v.v.
+                        string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
+                        player1.Text= IDcards[0]; 
+                        player2.Text= IDcards[1];
+                        player3.Text= IDcards[2];
+                        player4.Text= IDcards[3];   
                     }
                 }
             }
@@ -425,7 +421,6 @@ namespace UNO
                     MessageBox.Show("You cannot play this card."+clientId+Idplay);
                 }
 
-                // Cập nhật lại hiển thị các lá bài
                 UpdatePictureBoxes();
             }
         }
@@ -433,28 +428,6 @@ namespace UNO
         {
             try
             {
-                
-                /*if (cardName == "DD" || cardName == "DP")
-                {
-                    var colorDialog = new ColorDialog();
-                    colorDialog.AllowFullOpen = false; // Chỉ hiển thị một số màu cơ bản
-                    colorDialog.AnyColor = false; // Không cho phép chọn màu tùy chỉnh
-                    colorDialog.CustomColors = new int[] { Color.Red.ToArgb(), Color.Green.ToArgb(), Color.Blue.ToArgb(), Color.Yellow.ToArgb() };
-
-                    if (colorDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Chuyển màu RGB thành màu Uno (RD, GD, BD, YD)
-                        if(cardName=="DD")
-                        cardName = ConvertToUnoColor(colorDialog.Color)+"T";
-                        else
-                            cardName = ConvertToUnoColor(colorDialog.Color)+"F";
-                    }
-                    else
-                    {
-                        // Không chọn màu, không gửi lá bài
-                        return;
-                    }
-                }*/
 
                 // Gửi thông tin lá bài và màu đã chọn lên server
                 if (IsPlayable(cardName, cardTop))
@@ -471,34 +444,6 @@ namespace UNO
             }
         }
 
-        // Chuyển đổi màu RGB thành màu Uno (RD, GD, BD, YD, RF, YF, BF, GF)
-        private string ConvertToUnoColor(Color color)
-        {
-            // Tính toán gần nhất với các màu chính trong Uno: đỏ, xanh, xanh dương, vàng
-            int red = color.R > 128 ? 255 : 0;
-            int green = color.G > 128 ? 255 : 0;
-            int blue = color.B > 128 ? 255 : 0;
-            int minDistanceSquared = int.MaxValue;
-            string closestColor = "";
-
-            // Tính khoảng cách Euclid từ màu RGB đã chọn đến các màu Uno
-            foreach (var unoColor in new Dictionary<string, Color> { { "R", Color.Red }, { "G", Color.Green }, { "B", Color.Blue }, { "Y", Color.Yellow } })
-            {
-                int dR = red - unoColor.Value.R;
-                int dG = green - unoColor.Value.G;
-                int dB = blue - unoColor.Value.B;
-                int distanceSquared = dR * dR + dG * dG + dB * dB;
-                if (distanceSquared < minDistanceSquared)
-                {
-                    minDistanceSquared = distanceSquared;
-                    closestColor = unoColor.Key;
-                }
-            }
-
-            return closestColor;
-        }
-
-
         private bool IsPlayable(string selectedCard, string cardTop)
         {
             // Extract the color and number from the selected card and card on top
@@ -512,6 +457,5 @@ namespace UNO
             return (selectedColor == topColor || selectedNumber == topNumber || (selectedCard == "DD"&&topNumber!="P") || selectedCard == "DP" ||
             cardTop == "DD" || cardTop == "DP")&&(clientId==Idplay);
         }
-
     }
 }
