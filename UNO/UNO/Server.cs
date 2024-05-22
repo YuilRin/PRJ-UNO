@@ -57,26 +57,7 @@ namespace UNO
         
         private void GetCard()
         {
-            /*OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory(); // Mở tại thư mục hiện tại
-            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"; // Chỉ cho phép chọn các tệp văn bản
-            openFileDialog.RestoreDirectory = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = openFileDialog.FileName;
-
-                // Đọc dữ liệu từ tệp và đưa vào hàng đợi
-                dataQueue = ReadFileAndEnqueue(filePath);
-
-                // Xáo trộn các phần tử trong hàng đợi
-                ShuffleQueue(dataQueue);
-            }
-            else
-            {
-                // Người dùng đã hủy việc chọn tệp, thực hiện xử lý tương ứng ở đây nếu cần
-            }*/
-            // Đường dẫn tới tệp Uno.txt (trong cùng thư mục với Server.cs)
+           
 
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uno.txt");
 

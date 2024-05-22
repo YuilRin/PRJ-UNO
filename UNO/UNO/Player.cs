@@ -35,6 +35,14 @@ namespace UNO
             cancellationTokenSource = new CancellationTokenSource();
             cancellationToken = cancellationTokenSource.Token;
             LoadCardImages();
+            IpServer.Text="127.0.0.1";
+            foreach (Control control in this.Controls)
+            {
+                control.Visible = false;
+            }
+            name.Visible=true;          txtFullName.Visible=true;
+            phone.Visible=true;         txtPass.Visible=true;
+            Login.Visible=true;
         }
 
 
@@ -112,6 +120,10 @@ namespace UNO
         {
             string fullName = txtFullName.Text;
             string pass = txtPass.Text;
+            foreach (Control control in this.Controls)
+            {
+                control.Visible = true;
+            }
 
             if (string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(pass))
             {
@@ -127,8 +139,7 @@ namespace UNO
                     txtPass.Visible = false;
                     name.Visible = false;
                     phone.Visible = false;
-                    label1.Visible = true; label2.Visible = true;
-                    textBox1.Visible = true; textBox2.Visible = true;
+                   
                     textBox1.Text = ten;
                     textBox2.Text = mk;
                     Login.Visible = false;
@@ -150,8 +161,10 @@ namespace UNO
         {
             try
             {
+                string t = IpServer.Text;
+                IpServer.ReadOnly= false;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 8080); // Thay đổi địa chỉ IP và cổng nếu cần
+                await client.ConnectAsync(IPAddress.Parse(t), 8080); // Thay đổi địa chỉ IP và cổng nếu cần
                 networkStream = new NetworkStream(client);
                 reader = new StreamReader(networkStream);
                 writer = new StreamWriter(networkStream) { AutoFlush = true };

@@ -68,6 +68,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.playid = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.IpServer = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -84,6 +86,7 @@
             this.labelClientId.Location = new System.Drawing.Point(688, 12);
             this.labelClientId.Multiline = true;
             this.labelClientId.Name = "labelClientId";
+            this.labelClientId.ReadOnly = true;
             this.labelClientId.Size = new System.Drawing.Size(100, 22);
             this.labelClientId.TabIndex = 0;
             // 
@@ -153,6 +156,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(83, 17);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 14;
             this.textBox1.Visible = false;
@@ -161,6 +165,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(83, 61);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 15;
             this.textBox2.Visible = false;
@@ -227,6 +232,7 @@
             // 
             this.player3.Location = new System.Drawing.Point(499, 140);
             this.player3.Name = "player3";
+            this.player3.ReadOnly = true;
             this.player3.Size = new System.Drawing.Size(44, 22);
             this.player3.TabIndex = 20;
             // 
@@ -332,6 +338,7 @@
             // 
             this.PlusTable.Location = new System.Drawing.Point(694, 237);
             this.PlusTable.Name = "PlusTable";
+            this.PlusTable.ReadOnly = true;
             this.PlusTable.Size = new System.Drawing.Size(100, 22);
             this.PlusTable.TabIndex = 25;
             // 
@@ -356,6 +363,7 @@
             // 
             this.player1.Location = new System.Drawing.Point(421, 34);
             this.player1.Name = "player1";
+            this.player1.ReadOnly = true;
             this.player1.Size = new System.Drawing.Size(44, 22);
             this.player1.TabIndex = 20;
             // 
@@ -363,6 +371,7 @@
             // 
             this.player4.Location = new System.Drawing.Point(426, 218);
             this.player4.Name = "player4";
+            this.player4.ReadOnly = true;
             this.player4.Size = new System.Drawing.Size(44, 22);
             this.player4.TabIndex = 20;
             // 
@@ -370,6 +379,7 @@
             // 
             this.player2.Location = new System.Drawing.Point(300, 140);
             this.player2.Name = "player2";
+            this.player2.ReadOnly = true;
             this.player2.Size = new System.Drawing.Size(44, 22);
             this.player2.TabIndex = 20;
             // 
@@ -413,6 +423,7 @@
             // 
             this.playid.Location = new System.Drawing.Point(694, 195);
             this.playid.Name = "playid";
+            this.playid.ReadOnly = true;
             this.playid.Size = new System.Drawing.Size(100, 22);
             this.playid.TabIndex = 20;
             // 
@@ -425,15 +436,33 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Lượt của ";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 278);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 16);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Lá vừa rút";
+            // 
+            // IpServer
+            // 
+            this.IpServer.Location = new System.Drawing.Point(547, 12);
+            this.IpServer.Name = "IpServer";
+            this.IpServer.Size = new System.Drawing.Size(100, 22);
+            this.IpServer.TabIndex = 27;
+            // 
             // Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 450);
+            this.Controls.Add(this.IpServer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.PlusTable);
@@ -529,5 +558,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox playid;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox IpServer;
     }
 }
