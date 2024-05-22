@@ -195,7 +195,7 @@ namespace UNO
                     else if (request == "draw")
                     {
                         
-                        Idcards[play]++;
+                        Idcards[Idplay[play]-1]++;
                         if (plus!=0) plus=0;
                         SendIdplay();
                         SendUnoCards(clientSocket);
@@ -215,6 +215,7 @@ namespace UNO
                     else if (request.StartsWith("PlayCard:"))
                     {
                         Idcards[Idplay[play]-1]--;
+                        SendIdplay();
                         string cards = request.Split(':')[1].Trim();
                         if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
                         {

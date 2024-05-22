@@ -272,15 +272,16 @@ namespace UNO
                         player2.Text= IDcards[1];
                         player3.Text= IDcards[2];
                         player4.Text= IDcards[3];
-                        if (IDcards[0] == "0" || IDcards[1] == "0" || IDcards[2] == "0" || IDcards[3] == "0")
-                            foreach (Control control in this.Controls)
-                                control.Visible = false;
+
+
+                        //end game
                         if (player1.Text=="0"
                           ||player2.Text=="0"
                           ||player3.Text=="0"
                           ||player4.Text=="0")
                             foreach (Control control in this.Controls)
                                 control.Visible = false;
+
                         if (((player1.Text=="0")&&(clientId==1)
                           ||((player2.Text=="0")&&(clientId==2))
                           ||((player3.Text=="0")&&(clientId==3))
