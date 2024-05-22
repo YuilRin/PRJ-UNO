@@ -70,6 +70,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.IpServer = new System.Windows.Forms.TextBox();
+            this.Yellow = new System.Windows.Forms.Button();
+            this.Red = new System.Windows.Forms.Button();
+            this.Blue = new System.Windows.Forms.Button();
+            this.Green = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -452,11 +457,63 @@
             this.IpServer.Size = new System.Drawing.Size(100, 22);
             this.IpServer.TabIndex = 27;
             // 
+            // Yellow
+            // 
+            this.Yellow.BackColor = System.Drawing.Color.Yellow;
+            this.Yellow.Location = new System.Drawing.Point(638, 110);
+            this.Yellow.Name = "Yellow";
+            this.Yellow.Size = new System.Drawing.Size(75, 23);
+            this.Yellow.TabIndex = 28;
+            this.Yellow.UseVisualStyleBackColor = false;
+            this.Yellow.Click += new System.EventHandler(this.Yellow_Click);
+            // 
+            // Red
+            // 
+            this.Red.BackColor = System.Drawing.Color.Red;
+            this.Red.Location = new System.Drawing.Point(719, 110);
+            this.Red.Name = "Red";
+            this.Red.Size = new System.Drawing.Size(75, 23);
+            this.Red.TabIndex = 28;
+            this.Red.UseVisualStyleBackColor = false;
+            this.Red.Click += new System.EventHandler(this.Red_Click);
+            // 
+            // Blue
+            // 
+            this.Blue.BackColor = System.Drawing.Color.Blue;
+            this.Blue.Location = new System.Drawing.Point(719, 139);
+            this.Blue.Name = "Blue";
+            this.Blue.Size = new System.Drawing.Size(75, 23);
+            this.Blue.TabIndex = 28;
+            this.Blue.UseVisualStyleBackColor = false;
+            this.Blue.Click += new System.EventHandler(this.Blue_Click);
+            // 
+            // Green
+            // 
+            this.Green.BackColor = System.Drawing.Color.Lime;
+            this.Green.Location = new System.Drawing.Point(638, 139);
+            this.Green.Name = "Green";
+            this.Green.Size = new System.Drawing.Size(75, 23);
+            this.Green.TabIndex = 28;
+            this.Green.UseVisualStyleBackColor = false;
+            this.Green.Click += new System.EventHandler(this.Green_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(546, 59);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 29;
+            // 
             // Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 450);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.Green);
+            this.Controls.Add(this.Blue);
+            this.Controls.Add(this.Red);
+            this.Controls.Add(this.Yellow);
             this.Controls.Add(this.IpServer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -560,5 +617,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox IpServer;
+        private System.Windows.Forms.Button Yellow;
+        private System.Windows.Forms.Button Red;
+        private System.Windows.Forms.Button Blue;
+        private System.Windows.Forms.Button Green;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

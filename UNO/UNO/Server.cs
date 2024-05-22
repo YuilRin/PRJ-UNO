@@ -18,7 +18,7 @@ namespace UNO
         private bool isServerRunning;
         private int nextClientId = 1;
         int plus = 0;
-
+        
 
         private Dictionary<string, (string, int)> clientInfo = new Dictionary<string, (string, int)>();
         private Dictionary<Socket, int> clientIds = new Dictionary<Socket, int>();
@@ -152,11 +152,14 @@ namespace UNO
                         if (loginInfo.Length >= 2)
                         {
                             ten = loginInfo[0].Trim();
+                           
+                                
                             mk = loginInfo[1].Trim();
                             if (clientInfo.ContainsKey(ten) && clientInfo[ten].Item1 == mk)
                             {
                                 clientId = clientInfo[ten].Item2;
                                 clientIds.Add(clientSocket, clientId);
+                                SendClientId(clientSocket, 0);
                             }
                             else
                             {
@@ -191,10 +194,12 @@ namespace UNO
                     }
                     else if (request == "draw")
                     {
-                        // Xử lý khi nhận được tin nhắn "begin"
+                        
                         Idcards[play]++;
+                        if (plus!=0) plus=0;
+                        SendIdplay();
                         SendUnoCards(clientSocket);
-                        if(plus!=0)plus--;
+                        
                     }
                     else if (request.StartsWith("Exit:"))
                     {
@@ -209,43 +214,47 @@ namespace UNO
                     }
                     else if (request.StartsWith("PlayCard:"))
                     {
-                        Idcards[play]--;
+                        Idcards[Idplay[play]-1]--;
                         string cards = request.Split(':')[1].Trim();
-                        if (cards == "RF" || cards == "YF" || cards == "BF" || cards == "GF"||cards== "DP")
+                        if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
                         {
-                            SendUnoCardsTop("DP");
+                            SendUnoCardsTop(cards);
                             plus+=4;
+                            
                             play++;
+
                             if (play >= 4)
                                 play -= 4;
                             SendIdplay();
                             SendPlus(cards);
                         }
-                        else if (cards == "RT" || cards == "YT" || cards == "BT" || cards == "GT"||cards=="DD")
+                        else if (cards == "RDD" || cards == "YDD" || cards == "BDD" || cards == "GDD"||cards=="DD")
                         {
-                           SendUnoCardsTop("DD");
+                           SendUnoCardsTop(cards);
+                            
                             play++;
                             if (play >= 4)
                                 play -= 4;
                            SendIdplay();
+                            plus=0;
 
                         }
                         else if (cards == "RP" || cards == "YP" || cards == "BP" || cards == "GP")
                         {
                             SendUnoCardsTop(cards);
+                            
                             play++;
                             if (play >= 4)
                                 play -= 4;
                            SendIdplay();
                             plus+=2;
                             SendPlus(cards);
-
-
                         }
                         else
                         {
+                            
                             SendUnoCardsTop(cards);
-
+                            plus=0;
                             play++;
                             if (play >= 4)
                                 play -= 4;
