@@ -42,7 +42,7 @@ namespace UNO
             }
             name.Visible=true;          txtFullName.Visible=true;
             phone.Visible=true;         txtPass.Visible=true;
-            Login.Visible=true;
+            Login.Visible=true;         IpServer.Visible=true;
         }
 
 
@@ -120,10 +120,7 @@ namespace UNO
         {
             string fullName = txtFullName.Text;
             string pass = txtPass.Text;
-            foreach (Control control in this.Controls)
-            {
-                control.Visible = true;
-            }
+           
 
             if (string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(pass))
             {
@@ -148,6 +145,11 @@ namespace UNO
                     // Gửi thông tin đăng nhập lên server
                     await writer.WriteLineAsync($"Login: {ten}, {mk}");
                     await writer.FlushAsync();
+                    foreach (Control control in this.Controls)
+                    {
+                        control.Visible = true;
+                    }
+                    ConnectToServer();
 
                 }
                 catch (Exception ex)

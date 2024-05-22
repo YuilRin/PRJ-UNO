@@ -447,7 +447,7 @@
             // 
             // IpServer
             // 
-            this.IpServer.Location = new System.Drawing.Point(547, 12);
+            this.IpServer.Location = new System.Drawing.Point(565, 12);
             this.IpServer.Name = "IpServer";
             this.IpServer.Size = new System.Drawing.Size(100, 22);
             this.IpServer.TabIndex = 27;
