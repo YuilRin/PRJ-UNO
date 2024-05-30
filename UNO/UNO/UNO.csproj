@@ -105,6 +105,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Server.resx">
       <DependentUpon>Server.cs</DependentUpon>
@@ -121,6 +122,168 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

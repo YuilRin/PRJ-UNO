@@ -65,7 +65,7 @@ namespace UNO
                 string currentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
 
                 // Xây dựng đường dẫn đầy đủ đến thư mục chứa các tệp ảnh
-                string imageFolderPath = Path.Combine(currentDirectory, "anh");
+                string imageFolderPath = Path.Combine(currentDirectory, "Resources");
 
                 DirectoryInfo directoryInfo = new DirectoryInfo(imageFolderPath);
                 foreach (var file in directoryInfo.GetFiles())
@@ -104,19 +104,36 @@ namespace UNO
         }
 
         // Hàm xử lý khi nhận được thẻ từ server
-        private async Task HandleCardReceived(string cards)
+        private void HandleCardReceived(string cards)
         {
             textBox3.Text=cards;
             if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
             {
                 DisplayCard("DP");
+                if (cards=="BDP")
+                    Blue.Visible = true;
+                if (cards=="GDP")
+                    Green.Visible = true;
+                if (cards=="RDP")
+                    Red.Visible = true;
+                if (cards=="YDP")
+                    Yellow.Visible = true;
             }
             else if (cards == "RDD" || cards == "YDD" || cards == "BDD" || cards == "GDD"||cards=="DD")
             {
                 DisplayCard("DD");
+                if (cards=="BDD")
+                    Blue.Visible = true;
+                if (cards=="GDD")
+                    Green.Visible = true;
+                if (cards=="RDD")
+                    Red.Visible = true;
+                if (cards=="YDD")
+                    Yellow.Visible = true;
             }
             else
                 DisplayCard(cards);
+            
         }
         private async void Chat_Load(object sender, EventArgs e)
         {
@@ -166,7 +183,7 @@ namespace UNO
                     textBox2.Text = mk;
                     Login.Visible = false;
 
-                    //await ConnectToServer();
+                 //   await ConnectToServer();
                    // await ReceiveMessagesAndUpdateChat();
 
                     // Gửi thông tin đăng nhập lên server
@@ -230,8 +247,20 @@ namespace UNO
                     }
                     else if (messagee.StartsWith("IDplay: "))
                     {
+                        foreach (Control control in this.Controls)
+                            if(control is GroupBox)
+                                control.BackColor = Color.White;
                         Idplay = int.Parse(messagee.Split(':')[1].Trim());
                         playid.Text=Idplay.ToString();
+                        if(Idplay==1)
+                            groupBoxp1.BackColor= Color.FromArgb(255, 255, 128);
+                        if (Idplay==2)
+                            groupBoxp2.BackColor= Color.FromArgb(255, 255, 128);
+                        if (Idplay==3)
+                            groupBoxp3.BackColor= Color.FromArgb(255, 255, 128);
+                        if (Idplay==4)
+                            groupBoxp4.BackColor= Color.FromArgb(255, 255, 128);
+
                     }
 
                     else if (messagee.StartsWith("Card:"))
@@ -243,6 +272,7 @@ namespace UNO
                         // await HandleCardReceived(cardName);
                         card.Add(cardName);
                         card.Sort();
+                        currentIndex=0;
 
                         DisplayFirstSixCards();
                     }
@@ -250,7 +280,7 @@ namespace UNO
                     {
                         cardTop = messagee.Split(':')[1].Trim();
 
-                        await HandleCardReceived(cardTop);
+                         HandleCardReceived(cardTop);
 
                     }
                     else if (messagee.StartsWith("Plus: "))
@@ -446,6 +476,7 @@ namespace UNO
         // Hàm cập nhật hình ảnh trên PictureBox
         private void UpdatePictureBoxes()
         {
+            currentIndextb.Text=currentIndex.ToString();
             for (int i = 0; i < 6; i++)
             {
                 PictureBox pictureBox = Controls.Find("pictureBox" +(i + 1), true)[0] as PictureBox;
@@ -527,6 +558,10 @@ namespace UNO
                             Thread.Sleep(100); // Đợi người dùng chọn màu
                         }
                     });
+                    Blue.Visible = false;
+                    Green.Visible = false;
+                    Red.Visible = false;
+                    Yellow.Visible = false;
                     if (B==1)
                         t="B"+selectedCard;
                     if (G==1)
@@ -567,6 +602,7 @@ namespace UNO
         {
             B=1; colorSelected=true;
         }
+
         private void Red_Click(object sender, EventArgs e)
         {
             R=1; colorSelected=true;

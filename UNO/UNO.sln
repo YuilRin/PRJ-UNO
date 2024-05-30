@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNO", "UNO\UNO.csproj", "{DC9D1E87-574B-44B2-80AC-999AF41F8DED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNO_V2", "UNO_V2\UNO_V2.csproj", "{20495044-C7DA-456B-92D9-A2C155328E07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC9D1E87-574B-44B2-80AC-999AF41F8DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20495044-C7DA-456B-92D9-A2C155328E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20495044-C7DA-456B-92D9-A2C155328E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20495044-C7DA-456B-92D9-A2C155328E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20495044-C7DA-456B-92D9-A2C155328E07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

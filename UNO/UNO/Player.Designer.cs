@@ -59,13 +59,7 @@
             this.PlusTable = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.player1 = new System.Windows.Forms.TextBox();
-            this.player4 = new System.Windows.Forms.TextBox();
-            this.player2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.playid = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -75,6 +69,17 @@
             this.Blue = new System.Windows.Forms.Button();
             this.Green = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.currentIndextb = new System.Windows.Forms.TextBox();
+            this.groupBoxp3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxp4 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.player4 = new System.Windows.Forms.TextBox();
+            this.groupBoxp2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.player2 = new System.Windows.Forms.TextBox();
+            this.groupBoxp1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.player1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -83,6 +88,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.groupBoxp3.SuspendLayout();
+            this.groupBoxp4.SuspendLayout();
+            this.groupBoxp2.SuspendLayout();
+            this.groupBoxp1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelClientId
@@ -235,17 +244,17 @@
             // 
             // player3
             // 
-            this.player3.Location = new System.Drawing.Point(499, 140);
+            this.player3.Location = new System.Drawing.Point(6, 39);
             this.player3.Name = "player3";
             this.player3.ReadOnly = true;
-            this.player3.Size = new System.Drawing.Size(44, 22);
+            this.player3.Size = new System.Drawing.Size(50, 22);
             this.player3.TabIndex = 20;
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Location = new System.Drawing.Point(370, 69);
+            this.pictureBox7.Location = new System.Drawing.Point(390, 94);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(100, 131);
+            this.pictureBox7.Size = new System.Drawing.Size(64, 83);
             this.pictureBox7.TabIndex = 19;
             this.pictureBox7.TabStop = false;
             // 
@@ -261,7 +270,7 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(724, 328);
+            this.back.Location = new System.Drawing.Point(724, 332);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
             this.back.TabIndex = 22;
@@ -364,65 +373,14 @@
             this.pictureBox8.TabIndex = 19;
             this.pictureBox8.TabStop = false;
             // 
-            // player1
-            // 
-            this.player1.Location = new System.Drawing.Point(421, 34);
-            this.player1.Name = "player1";
-            this.player1.ReadOnly = true;
-            this.player1.Size = new System.Drawing.Size(44, 22);
-            this.player1.TabIndex = 20;
-            // 
-            // player4
-            // 
-            this.player4.Location = new System.Drawing.Point(426, 218);
-            this.player4.Name = "player4";
-            this.player4.ReadOnly = true;
-            this.player4.Size = new System.Drawing.Size(44, 22);
-            this.player4.TabIndex = 20;
-            // 
-            // player2
-            // 
-            this.player2.Location = new System.Drawing.Point(300, 140);
-            this.player2.Name = "player2";
-            this.player2.ReadOnly = true;
-            this.player2.Size = new System.Drawing.Size(44, 22);
-            this.player2.TabIndex = 20;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(367, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 16);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Player1";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(496, 121);
+            this.label5.Location = new System.Drawing.Point(6, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 16);
             this.label5.TabIndex = 26;
             this.label5.Text = "Player3";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(297, 121);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 16);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Player2";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(367, 221);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 16);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "Player4";
             // 
             // playid
             // 
@@ -499,26 +457,129 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(546, 59);
+            this.textBox3.Location = new System.Drawing.Point(565, 61);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
             this.textBox3.TabIndex = 29;
+            // 
+            // currentIndextb
+            // 
+            this.currentIndextb.Location = new System.Drawing.Point(244, 235);
+            this.currentIndextb.Name = "currentIndextb";
+            this.currentIndextb.Size = new System.Drawing.Size(100, 22);
+            this.currentIndextb.TabIndex = 30;
+            // 
+            // groupBoxp3
+            // 
+            this.groupBoxp3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxp3.Controls.Add(this.label5);
+            this.groupBoxp3.Controls.Add(this.player3);
+            this.groupBoxp3.Location = new System.Drawing.Point(481, 104);
+            this.groupBoxp3.Name = "groupBoxp3";
+            this.groupBoxp3.Size = new System.Drawing.Size(64, 67);
+            this.groupBoxp3.TabIndex = 31;
+            this.groupBoxp3.TabStop = false;
+            // 
+            // groupBoxp4
+            // 
+            this.groupBoxp4.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxp4.Controls.Add(this.label10);
+            this.groupBoxp4.Controls.Add(this.player4);
+            this.groupBoxp4.Location = new System.Drawing.Point(390, 192);
+            this.groupBoxp4.Name = "groupBoxp4";
+            this.groupBoxp4.Size = new System.Drawing.Size(64, 67);
+            this.groupBoxp4.TabIndex = 31;
+            this.groupBoxp4.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 16);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Player4";
+            // 
+            // player4
+            // 
+            this.player4.Location = new System.Drawing.Point(6, 39);
+            this.player4.Name = "player4";
+            this.player4.ReadOnly = true;
+            this.player4.Size = new System.Drawing.Size(50, 22);
+            this.player4.TabIndex = 20;
+            // 
+            // groupBoxp2
+            // 
+            this.groupBoxp2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxp2.Controls.Add(this.label7);
+            this.groupBoxp2.Controls.Add(this.player2);
+            this.groupBoxp2.Location = new System.Drawing.Point(300, 104);
+            this.groupBoxp2.Name = "groupBoxp2";
+            this.groupBoxp2.Size = new System.Drawing.Size(64, 67);
+            this.groupBoxp2.TabIndex = 31;
+            this.groupBoxp2.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Player2";
+            // 
+            // player2
+            // 
+            this.player2.Location = new System.Drawing.Point(6, 39);
+            this.player2.Name = "player2";
+            this.player2.ReadOnly = true;
+            this.player2.Size = new System.Drawing.Size(50, 22);
+            this.player2.TabIndex = 20;
+            // 
+            // groupBoxp1
+            // 
+            this.groupBoxp1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxp1.Controls.Add(this.label4);
+            this.groupBoxp1.Controls.Add(this.player1);
+            this.groupBoxp1.Location = new System.Drawing.Point(390, 13);
+            this.groupBoxp1.Name = "groupBoxp1";
+            this.groupBoxp1.Size = new System.Drawing.Size(64, 67);
+            this.groupBoxp1.TabIndex = 31;
+            this.groupBoxp1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 16);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Player1";
+            // 
+            // player1
+            // 
+            this.player1.Location = new System.Drawing.Point(6, 39);
+            this.player1.Name = "player1";
+            this.player1.ReadOnly = true;
+            this.player1.Size = new System.Drawing.Size(50, 22);
+            this.player1.TabIndex = 20;
             // 
             // Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 450);
+            this.Controls.Add(this.groupBoxp1);
+            this.Controls.Add(this.groupBoxp2);
+            this.Controls.Add(this.groupBoxp4);
+            this.Controls.Add(this.groupBoxp3);
+            this.Controls.Add(this.currentIndextb);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.Green);
             this.Controls.Add(this.Blue);
             this.Controls.Add(this.Red);
             this.Controls.Add(this.Yellow);
             this.Controls.Add(this.IpServer);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
@@ -532,11 +593,7 @@
             this.Controls.Add(this.draw);
             this.Controls.Add(this.back);
             this.Controls.Add(this.Next);
-            this.Controls.Add(this.player2);
-            this.Controls.Add(this.player4);
-            this.Controls.Add(this.player1);
             this.Controls.Add(this.playid);
-            this.Controls.Add(this.player3);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -568,6 +625,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.groupBoxp3.ResumeLayout(false);
+            this.groupBoxp3.PerformLayout();
+            this.groupBoxp4.ResumeLayout(false);
+            this.groupBoxp4.PerformLayout();
+            this.groupBoxp2.ResumeLayout(false);
+            this.groupBoxp2.PerformLayout();
+            this.groupBoxp1.ResumeLayout(false);
+            this.groupBoxp1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -606,13 +671,7 @@
         private System.Windows.Forms.TextBox PlusTable;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.TextBox player1;
-        private System.Windows.Forms.TextBox player4;
-        private System.Windows.Forms.TextBox player2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox playid;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -622,5 +681,16 @@
         private System.Windows.Forms.Button Blue;
         private System.Windows.Forms.Button Green;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox currentIndextb;
+        private System.Windows.Forms.GroupBox groupBoxp3;
+        private System.Windows.Forms.GroupBox groupBoxp4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox player4;
+        private System.Windows.Forms.GroupBox groupBoxp2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox player2;
+        private System.Windows.Forms.GroupBox groupBoxp1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox player1;
     }
 }
