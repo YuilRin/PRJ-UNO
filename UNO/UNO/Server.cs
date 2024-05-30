@@ -25,6 +25,7 @@ namespace UNO
         private Dictionary<string, bool> clientStatus = new Dictionary<string, bool>();
 
         private Queue<string> dataQueue = new Queue<string>();
+        private Queue<string> dataQueue2 = new Queue<string>();
 
         int playerCount = 0;
         private int[] Idplay = { 1, 2, 3, 4 };
@@ -181,16 +182,17 @@ namespace UNO
                         for (int i = 0; i < 6; i++)
                             SendUnoCards(clientSocket);
                         playerCount++;
-                        if (playerCount >= 4)
+                        if (playerCount == 4)
                         {
                             // Nếu đủ 4 người chơi, gửi lá đầu tiên cho mỗi người chơi
                             SendUnoCardsTop("");
-                            Idcards[0]=6;
-                            Idcards[1]=6;
-                            Idcards[2]=6;
-                            Idcards[3]=6;
+                            Idcards[0] += 6;
+                            Idcards[1] += 6;
+                            Idcards[2] += 6;
+                            Idcards[3] += 6;
                             SendIdplay();
                         }
+                        
                     }
                     else if (request == "draw")
                     {
@@ -220,6 +222,7 @@ namespace UNO
                         if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
                         {
                             SendUnoCardsTop(cards);
+                            dataQueue2.Enqueue("DP");
                             plus+=4;
                             
                             play++;
@@ -232,7 +235,7 @@ namespace UNO
                         else if (cards == "RDD" || cards == "YDD" || cards == "BDD" || cards == "GDD"||cards=="DD")
                         {
                            SendUnoCardsTop(cards);
-                            
+                            dataQueue2.Enqueue("DD");
                             play++;
                             if (play >= 4)
                                 play -= 4;
@@ -243,7 +246,7 @@ namespace UNO
                         else if (cards == "RP" || cards == "YP" || cards == "BP" || cards == "GP")
                         {
                             SendUnoCardsTop(cards);
-                            
+                            dataQueue2.Enqueue(cards);
                             play++;
                             if (play >= 4)
                                 play -= 4;
@@ -253,7 +256,7 @@ namespace UNO
                         }
                         else
                         {
-                            
+                            dataQueue2.Enqueue(cards);
                             SendUnoCardsTop(cards);
                             plus=0;
                             play++;
@@ -366,6 +369,11 @@ namespace UNO
             NetworkStream stream = new NetworkStream(clientSocket);
             StreamWriter writer = new StreamWriter(stream);
             writer.AutoFlush = true;
+            
+            if (dataQueue.Count == 0)
+            {
+                RefillAndShuffleQueue();
+            }
 
             if (dataQueue.Count > 0)
             {
@@ -381,6 +389,15 @@ namespace UNO
                 writer.Flush();
             }
             // UpdateAllTextBox();
+        }
+
+        private void RefillAndShuffleQueue()
+        {
+            while (dataQueue2.Count > 0)
+            {
+                dataQueue.Enqueue(dataQueue2.Dequeue());
+            }
+            ShuffleQueue(dataQueue);
         }
 
         private void SendUnoCardsTop(string cards)

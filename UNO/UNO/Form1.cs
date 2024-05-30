@@ -28,6 +28,7 @@ namespace UNO
         {
             Server a= new Server(); 
             a.Show();
+            button2.Visible=false;
         }
     }
 }
