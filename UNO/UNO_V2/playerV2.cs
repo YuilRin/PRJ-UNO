@@ -84,7 +84,7 @@ namespace UNO_V2
             {
                 if (cardImages.ContainsKey(cardName))
                 {
-                    if(isBegin==false)
+                    if (isBegin==false)
                     {
                         foreach (Control ctr in this.Controls)
                         {
@@ -98,9 +98,13 @@ namespace UNO_V2
                         Sort.Visible=true;
                         back.Visible=true;
                         Next.Visible=true;
+                        isPlay1.Visible=false;
+                        isPlay2.Visible=false;
+                        isPlay3.Visible=false;
+                        isPlay4.Visible=false;
                     }
                     TopCard.Image = cardImages[cardName];
-                   
+
                 }
                 else
                 {
@@ -203,6 +207,35 @@ namespace UNO_V2
                         }
                         UpdateClientIdLabel(clientId);
                     }
+                    if (messagee.StartsWith("isPlay:"))
+                    {
+                        int t = int.Parse(messagee.Split(':')[1].Trim());
+                        if (t == 1)
+                        {
+                            isPlay1.BackColor = Color.Yellow;
+                        }
+                        if (t == 2)
+                        {
+                            isPlay1.BackColor = Color.Yellow;
+                            isPlay2.BackColor = Color.Yellow;
+                        }
+                        if (t == 3)
+                        {
+                            isPlay1.BackColor = Color.Yellow;
+                            isPlay2.BackColor = Color.Yellow;
+                            isPlay3.BackColor = Color.Yellow;
+                        }
+                        if (t == 4)
+                        {
+                            isPlay4.BackColor = Color.Yellow;
+                           
+                            isPlay1.Visible=false;
+                            isPlay2.Visible=false;
+                            isPlay3.Visible=false;
+                            isPlay4.Visible=false;
+                        }
+
+                    }
                     if (messagee.StartsWith("IDroom: "))
                     {
                         Room.Text = messagee.Split(':')[1].Trim();
@@ -239,7 +272,7 @@ namespace UNO_V2
                         if (Idplay==4)
                         {
                             if (Idplay==clientId)
-                                groupBoxp1.BackColor= Color.Red;
+                                groupBoxp4.BackColor= Color.Red;
                             else
                                 groupBoxp4.BackColor= Color.FromArgb(255, 255, 128);
                         }
@@ -358,14 +391,14 @@ namespace UNO_V2
             cancellationTokenSource.Cancel();
         }
 
-        private void begin_Click(object sender, EventArgs e)
+        private void Ready_Click(object sender, EventArgs e)
         {
             try
             {
                 // Gửi yêu cầu "begin" đến server
                 writer.WriteLine("begin");
                 writer.Flush();
-                Begin.Visible=false;
+                Ready.Visible=false;
             }
             catch (Exception ex)
             {
@@ -641,5 +674,7 @@ namespace UNO_V2
             card.Sort();
             DisplayFirstSixCards();
         }
+
+       
     }
 }

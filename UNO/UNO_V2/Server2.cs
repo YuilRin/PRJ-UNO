@@ -20,6 +20,7 @@ namespace UNO_V2
         public Queue<string> DataQueue { get; private set; }
         public Queue<string> DataQueue2 { get; }
         public int PlayerCount = 0;
+        public int CountBG = 0;
         public int[] Idplay { get; }
         public int Play { get; set; }
         public int[] Idcards { get; }
@@ -34,6 +35,7 @@ namespace UNO_V2
             DataQueue2 = new Queue<string>();
             Idplay = new int[] { 1, 2, 3, 4 };
             Idcards = new int[] { 0, 0, 0, 0 };
+            CountBG=0;
             InitializeCardQueue();
         }
 
@@ -226,11 +228,26 @@ namespace UNO_V2
                             Room room = FindRoomByClientSocket(clientSocket);
                             if (room != null)
                             {
-                                for (int i = 0; i < 6; i++)
-                                    await SendUnoCards(writer, room);
-                                MessageBox.Show(room.RoomName+room.PlayerCount);
-                                if (room.beg==0&&room.PlayerCount == 4)
+                                room.CountBG++;
+                                foreach (Socket clSocket in room.ClientIds.Keys)
                                 {
+                                    using (NetworkStream stream2 = new NetworkStream(clSocket))
+                                    using (StreamWriter writer2 = new StreamWriter(stream2))
+                                    {
+                                        writer2.WriteLine("isPlay:"+room.CountBG);
+                                        writer2.Flush();
+                                    }
+                                }
+                                //MessageBox.Show(room.RoomName+room.PlayerCount);
+                                if (room.beg==0&&room.PlayerCount == 4&&room.CountBG==4)
+                                {
+                                    foreach (Socket clSocket in room.ClientIds.Keys)
+                                    {
+                                        using (NetworkStream stream2 = new NetworkStream(clSocket))
+                                        using (StreamWriter writer2 = new StreamWriter(stream2))
+                                            for (int i = 0; i < 6; i++)
+                                                await SendUnoCards(writer2, room);
+                                    }
                                     room.beg=1;
                                     SendUnoCardsTop(room, "");
                                     for (int i = 0; i < 4; i++)

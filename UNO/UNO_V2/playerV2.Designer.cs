@@ -30,7 +30,7 @@
         {
             labelClientId = new TextBox();
             NameBox = new TextBox();
-            Begin = new Button();
+            Ready = new Button();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -71,6 +71,10 @@
             Red = new Button();
             Blue = new Button();
             Green = new Button();
+            isPlay1 = new Button();
+            isPlay2 = new Button();
+            isPlay3 = new Button();
+            isPlay4 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -105,16 +109,16 @@
             NameBox.Size = new Size(100, 27);
             NameBox.TabIndex = 14;
             // 
-            // Begin
+            // Ready
             // 
-            Begin.Location = new Point(13, 88);
-            Begin.Margin = new Padding(3, 4, 3, 4);
-            Begin.Name = "Begin";
-            Begin.Size = new Size(75, 29);
-            Begin.TabIndex = 18;
-            Begin.Text = "Begin";
-            Begin.UseVisualStyleBackColor = true;
-            Begin.Click += begin_Click;
+            Ready.Location = new Point(13, 88);
+            Ready.Margin = new Padding(3, 4, 3, 4);
+            Ready.Name = "Ready";
+            Ready.Size = new Size(75, 29);
+            Ready.TabIndex = 18;
+            Ready.Text = "Ready";
+            Ready.UseVisualStyleBackColor = true;
+            Ready.Click += Ready_Click;
             // 
             // pictureBox1
             // 
@@ -531,11 +535,55 @@
             Green.UseVisualStyleBackColor = false;
             Green.Click += Green_Click;
             // 
+            // isPlay1
+            // 
+            isPlay1.Enabled = false;
+            isPlay1.Location = new Point(74, 273);
+            isPlay1.Name = "isPlay1";
+            isPlay1.Size = new Size(119, 173);
+            isPlay1.TabIndex = 33;
+            isPlay1.Text = "Player1";
+            isPlay1.UseVisualStyleBackColor = true;
+            // 
+            // isPlay2
+            // 
+            isPlay2.Enabled = false;
+            isPlay2.Location = new Point(246, 273);
+            isPlay2.Name = "isPlay2";
+            isPlay2.Size = new Size(119, 173);
+            isPlay2.TabIndex = 33;
+            isPlay2.Text = "Player2";
+            isPlay2.UseVisualStyleBackColor = true;
+            // 
+            // isPlay3
+            // 
+            isPlay3.Enabled = false;
+            isPlay3.Location = new Point(416, 273);
+            isPlay3.Name = "isPlay3";
+            isPlay3.Size = new Size(119, 173);
+            isPlay3.TabIndex = 33;
+            isPlay3.Text = "Player3";
+            isPlay3.UseVisualStyleBackColor = true;
+            // 
+            // isPlay4
+            // 
+            isPlay4.Enabled = false;
+            isPlay4.Location = new Point(585, 273);
+            isPlay4.Name = "isPlay4";
+            isPlay4.Size = new Size(119, 173);
+            isPlay4.TabIndex = 33;
+            isPlay4.Text = "Player4";
+            isPlay4.UseVisualStyleBackColor = true;
+            // 
             // playerV2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(778, 486);
+            Controls.Add(isPlay4);
+            Controls.Add(isPlay3);
+            Controls.Add(isPlay2);
+            Controls.Add(isPlay1);
             Controls.Add(Green);
             Controls.Add(Blue);
             Controls.Add(button6);
@@ -565,7 +613,7 @@
             Controls.Add(groupBoxp3);
             Controls.Add(Next);
             Controls.Add(label9);
-            Controls.Add(Begin);
+            Controls.Add(Ready);
             Controls.Add(TopCard);
             Controls.Add(PlusTable);
             Controls.Add(LastCard);
@@ -607,7 +655,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button Begin;
+        private System.Windows.Forms.Button Ready;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -648,5 +696,9 @@
         private Button Red;
         private Button Blue;
         private Button Green;
+        private Button isPlay1;
+        private Button isPlay2;
+        private Button isPlay3;
+        private Button isPlay4;
     }
 }
