@@ -30,37 +30,16 @@ namespace UNO_V2
         private string cardTop;
         private List<string> card = new List<string>();
         private int Idplay;
-        public playerV2()
-        {
-            InitializeComponent();
-            cancellationTokenSource = new CancellationTokenSource();
-            cancellationToken = cancellationTokenSource.Token;
-            LoadCardImages();
-            IpServer.Text="127.0.0.1";
-            
-            
-                   IpServer.Visible=true;
-            foreach (Control ctr in this.Controls)
-            {
-                if (ctr is PictureBox)
-                {
-                    PictureBox pic = (PictureBox)ctr;
-                    pic.SizeMode =PictureBoxSizeMode.Zoom;
-                }
-            }
-        }
+        public string IpServer = "127.0.0.1";
+        private int plus = 0;
+        bool isBegin = false;
         public playerV2(string namet)
         {
             InitializeComponent();
             cancellationTokenSource = new CancellationTokenSource();
             cancellationToken = cancellationTokenSource.Token;
             LoadCardImages();
-            IpServer.Text="127.0.0.1";
             NameBox.Text = namet;
-
-
-
-            
             foreach (Control ctr in this.Controls)
             {
                 if (ctr is PictureBox)
@@ -70,7 +49,6 @@ namespace UNO_V2
                 }
             }
         }
-
 
         private bool isConnected = false;
         // Hàm load ảnh từ thư mục và thêm vào tập hợp cardImages
@@ -78,12 +56,11 @@ namespace UNO_V2
         {
             try
             {
-             
+
                 string currentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
 
                 // Xây dựng đường dẫn đầy đủ đến thư mục chứa các tệp ảnh
                 string imageFolderPath = Path.Combine(currentDirectory, "Resources");
-
                 DirectoryInfo directoryInfo = new DirectoryInfo(imageFolderPath);
                 foreach (var file in directoryInfo.GetFiles())
                 {
@@ -107,7 +84,23 @@ namespace UNO_V2
             {
                 if (cardImages.ContainsKey(cardName))
                 {
-                    pictureBox7.Image = cardImages[cardName];
+                    if(isBegin==false)
+                    {
+                        foreach (Control ctr in this.Controls)
+                        {
+                            if (ctr is Button)
+                            {
+                                ctr.Visible = true;
+                            }
+
+                        }
+                        draw.Visible=true;
+                        Sort.Visible=true;
+                        back.Visible=true;
+                        Next.Visible=true;
+                    }
+                    TopCard.Image = cardImages[cardName];
+                   
                 }
                 else
                 {
@@ -123,7 +116,7 @@ namespace UNO_V2
         // Hàm xử lý khi nhận được thẻ từ server
         private void HandleCardReceived(string cards)
         {
-            textBox3.Text=cards;
+            IDcard.Text=cards;
             if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
             {
                 DisplayCard("DP");
@@ -150,62 +143,56 @@ namespace UNO_V2
             }
             else
                 DisplayCard(cards);
-            
+
         }
-        private async void Chat_Load(object sender, EventArgs e)
+        // Hàm xử lý khi khởi động
+        private async void Player_Load(object sender, EventArgs e)
         {
 
             try
             {
                 await ConnectToServer();
-                await ReceiveMessagesAndUpdateChat();
-              
+                await ReceiveMessagesAndUpdate();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error connecting to server: " + ex.Message);
             }
         }
-
+        // Hàm xử lý kết nối server
         private async Task ConnectToServer()
         {
             try
             {
-                string t = IpServer.Text;ten=NameBox.Text;
-                IpServer.ReadOnly= false;
+                ten=NameBox.Text;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await client.ConnectAsync(IPAddress.Parse(t), 8080); // Thay đổi địa chỉ IP và cổng nếu cần
+                await client.ConnectAsync(IPAddress.Parse(IpServer), 8080); // Thay đổi địa chỉ IP và cổng nếu cần
                 networkStream = new NetworkStream(client);
                 reader = new StreamReader(networkStream);
                 writer = new StreamWriter(networkStream) { AutoFlush = true };
-                await writer.WriteLineAsync($"Login: {ten},{")"}");
-               
-
+                await writer.WriteLineAsync($"Login: {ten},{")"}");////khúc này có thể thêm mật khẩu cho mỗi player
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error connecting to server: " + ex.Message);
             }
         }
-       
-        private async Task ReceiveMessagesAndUpdateChat()
+        // Hàm xử lý hàm xử lý giao tiếp từ server
+        private async Task ReceiveMessagesAndUpdate()
         {
             try
             {
                 while (true)
                 {
                     string messagee = await reader.ReadLineAsync();
-                  
                     if (messagee == null)
                     {
                         // Đóng kết nối và thoát vòng lặp nếu không còn tin nhắn từ server
                         MessageBox.Show("Disconnected from server.");
                         break;
                     }
-
-
                     // Kiểm tra nếu tin nhắn chứa danh sách client đang online
-
                     if (messagee.StartsWith("Your ID is:"))
                     {
                         clientId = int.Parse(messagee.Split(':')[1].Trim());
@@ -216,45 +203,65 @@ namespace UNO_V2
                         }
                         UpdateClientIdLabel(clientId);
                     }
-                    else if (messagee.StartsWith("IDplay: "))
+                    if (messagee.StartsWith("IDroom: "))
+                    {
+                        Room.Text = messagee.Split(':')[1].Trim();
+                    }
+                    // Kiểm tra nếu tin nhắn chứa id lượt của người chơi
+                    if (messagee.StartsWith("IDplay: "))
                     {
                         foreach (Control control in this.Controls)
-                            if(control is GroupBox)
+                            if (control is GroupBox)
                                 control.BackColor = Color.White;
                         Idplay = int.Parse(messagee.Split(':')[1].Trim());
-                        playid.Text=Idplay.ToString();
-                        if(Idplay==1)
-                            groupBoxp1.BackColor= Color.FromArgb(255, 255, 128);
+
+                        if (Idplay==1)
+                        {
+                            if (Idplay==clientId)
+                                groupBoxp1.BackColor= Color.Red;
+                            else
+                                groupBoxp1.BackColor= Color.FromArgb(255, 255, 128);
+                        }
                         if (Idplay==2)
-                            groupBoxp2.BackColor= Color.FromArgb(255, 255, 128);
+                        {
+                            if (Idplay==clientId)
+                                groupBoxp2.BackColor= Color.Red;
+                            else
+                                groupBoxp2.BackColor= Color.FromArgb(255, 255, 128);
+                        }
                         if (Idplay==3)
-                            groupBoxp3.BackColor= Color.FromArgb(255, 255, 128);
+                        {
+                            if (Idplay==clientId)
+                                groupBoxp3.BackColor= Color.Red;
+                            else
+                                groupBoxp3.BackColor= Color.FromArgb(255, 255, 128);
+                        }
                         if (Idplay==4)
-                            groupBoxp4.BackColor= Color.FromArgb(255, 255, 128);
-
+                        {
+                            if (Idplay==clientId)
+                                groupBoxp1.BackColor= Color.Red;
+                            else
+                                groupBoxp4.BackColor= Color.FromArgb(255, 255, 128);
+                        }
                     }
-
-                    else if (messagee.StartsWith("Card:"))
+                    // Kiểm tra nếu tin nhắn chứa lá bài rút
+                    if (messagee.StartsWith("Card:"))
                     {
                         string cardName = messagee.Split(':')[1].Trim();
-                        //textBox3.AppendText(cardName + Environment.NewLine);
-                        pictureBox8.Image = cardImages[cardName];
 
-                        // await HandleCardReceived(cardName);
+                        LastCard.Image = cardImages[cardName];
                         card.Add(cardName);
-                        card.Sort();
                         currentIndex=0;
-
                         DisplayFirstSixCards();
                     }
                     else if (messagee.StartsWith("CardTop: "))
                     {
                         cardTop = messagee.Split(':')[1].Trim();
 
-                         HandleCardReceived(cardTop);
+                        HandleCardReceived(cardTop);
 
                     }
-                    else if (messagee.StartsWith("Plus: "))
+                    if (messagee.StartsWith("Plus: "))
                     {
                         // Phân tích tin nhắn để lấy thông tin tên, loại và số của lá bài
                         string[] parts = messagee.Split(' ');
@@ -266,15 +273,14 @@ namespace UNO_V2
                         }
 
                     }
-                    else if (messagee.StartsWith("IDcards: "))
+                    if (messagee.StartsWith("IDcards: "))
                     {
+                        // số lượng lá bài của mỗi player
                         string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
                         player1.Text= IDcards[0];
                         player2.Text= IDcards[1];
                         player3.Text= IDcards[2];
                         player4.Text= IDcards[3];
-
-
                         //end game
                         if (player1.Text=="0"
                           ||player2.Text=="0"
@@ -287,13 +293,13 @@ namespace UNO_V2
                           ||((player2.Text=="0")&&(clientId==2))
                           ||((player3.Text=="0")&&(clientId==3))
                           ||((player4.Text=="0")&&(clientId==4))))
-                            textBox3.Text="you win";
+                            IDcard.Text="you win";
 
                         else
                         if (IDcards[0] == "0" || IDcards[1] == "0" || IDcards[2] == "0" || IDcards[3] == "0")
                         {
-                            textBox3.Text="you lost";
-                            textBox3.Visible=true;
+                            IDcard.Text="you lost";
+                            IDcard.Visible=true;
                         }
                     }
                 }
@@ -304,11 +310,12 @@ namespace UNO_V2
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error receiving messages from server: " + ex.Message);
+                MessageBox.Show("Error receiving messages from server: " + ex.Message);
             }
         }
-        int plus = 0;
-        private async Task HandleDrawRequest(int count)
+
+        //hàm yêu cầu rút bài từ server
+        private void HandleDrawRequest(int count)
         {
             try
             {
@@ -318,34 +325,26 @@ namespace UNO_V2
                     writer.Flush();
                 }
                 else
-                for (int i = 0; i < count; i++)
-                {
-                    writer.WriteLine("draw");
-                    writer.Flush();
-                }
+                    for (int i = 0; i < count; i++)
+                    {
+                        writer.WriteLine("draw");
+                        writer.Flush();
+                    }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error sending 'draw' request to server: " + ex.Message);
             }
-           if(plus!=0) plus--;
-           PlusTable.Text=plus.ToString();
+            if (plus!=0) plus--;
+            PlusTable.Text=plus.ToString();
         }
-        private void UpdateChat(string message)
-        {
-            // Hiển thị tin nhắn từ server trên textboxChat
-          
-        }
-
+        //ID của bạn
         private void UpdateClientIdLabel(int clientId)
         {
-            // Cập nhật giao diện người dùng với ID mới
-            labelClientId.Text = "Your ID: " + clientId.ToString();
+            labelClientId.Text = "ID: " + clientId.ToString();
         }
 
-       
-
-        private void Chat_FormClosing(object sender, FormClosingEventArgs e)
+        private void Player_FormClosing(object sender, FormClosingEventArgs e)
         {
 
             if (writer != null)
@@ -365,14 +364,14 @@ namespace UNO_V2
             {
                 // Gửi yêu cầu "begin" đến server
                 writer.WriteLine("begin");
-                
                 writer.Flush();
+                Begin.Visible=false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error sending 'begin' request to server: " + ex.Message);
             }
-            
+
         }
         private int currentIndex = 0;
         private void DisplayFirstSixCards()
@@ -421,7 +420,7 @@ namespace UNO_V2
                 return;
             }
             else
-            UpdatePictureBoxes();
+                UpdatePictureBoxes();
         }
         /// <summary>
         /// 0 1 2 3 4 5
@@ -441,7 +440,7 @@ namespace UNO_V2
                 currentIndex = 0;
             }
             else
-            UpdatePictureBoxes();
+                UpdatePictureBoxes();
         }
 
         // Hàm cập nhật hình ảnh trên PictureBox
@@ -466,19 +465,19 @@ namespace UNO_V2
             }
         }
 
-        private async void drawButton_Click(object sender, EventArgs e)
+        private void drawButton_Click(object sender, EventArgs e)
         {
             if (Idplay==clientId)
             {
                 if (plus==0)
-                    await HandleDrawRequest(1);
+                    HandleDrawRequest(1);
                 else
                 {
-                    await HandleDrawRequest(plus);
+                    HandleDrawRequest(plus);
                     plus=0;
                     PlusTable.Text=plus.ToString();
-                }    
-                   
+                }
+
             }
             else MessageBox.Show("Bạn bị *** à. Đây không phải lượt của bạn");
         }
@@ -496,18 +495,22 @@ namespace UNO_V2
                     if (selectedCard[0]=='D')
                         SendColorToServer(selectedCard);
                     else
-                                SendCardToServer(selectedCard);
+                        SendCardToServer(selectedCard);
                 }
                 else
                 {
-                    MessageBox.Show("You cannot play this card."+clientId+Idplay);
+                    if (clientId==Idplay)
+                        MessageBox.Show("You cannot play this card.");
+                    else
+                        MessageBox.Show("It not your turn");
+                    //+clientId+Idplay);
                 }
 
                 UpdatePictureBoxes();
             }
         }
-        int B=0, G=0, R=0, Y=0;
-        bool colorSelected=false;
+        int B = 0, G = 0, R = 0, Y = 0;
+        bool colorSelected = false;
         private async Task SendColorToServer(string selectedCard)
         {
             try
@@ -516,12 +519,12 @@ namespace UNO_V2
                 if (IsPlayable(selectedCard, cardTop))
                 {
                     Blue.Visible = true;
-                    Green.Visible = true;   
+                    Green.Visible = true;
                     Red.Visible = true;
                     Yellow.Visible = true;
                     B=0; G=0; R=0; Y=0;
                     string t = "";
-                    
+
                     await Task.Run(() =>
                     {
                         while (!colorSelected)
@@ -556,7 +559,6 @@ namespace UNO_V2
             {
                 MessageBox.Show("Error sending card information to server: " + ex.Message);
             }
-           // throw new NotImplementedException();
         }
 
         private void Yellow_Click(object sender, EventArgs e)
@@ -583,7 +585,6 @@ namespace UNO_V2
         {
             try
             {
-
                 // Gửi thông tin lá bài và màu đã chọn lên server
                 if (IsPlayable(cardName, cardTop))
                 {
@@ -607,10 +608,12 @@ namespace UNO_V2
             string topColor = cardTop.Substring(0, 1);
             string topNumber = cardTop.Substring(1);
             string cards = cardTop;
+            if (cardTop=="DD"||cardTop=="DP")
+                return true;
             if (Idplay!=clientId)
                 return false;
 
-            if (selectedCard=="DF")
+            if (selectedCard=="DP")
                 return true;
 
             if (selectedCard=="DD")
@@ -629,10 +632,14 @@ namespace UNO_V2
             if (plus!=0)
                 return ((selectedColor == topColor&&selectedNumber=="P")||(selectedNumber=="P")||selectedCard=="DP");
             // Check if the selected card matches the color or number of the top card, or if it's a special card (DD or DF)
-            return (selectedColor == topColor || selectedNumber == topNumber || (selectedCard == "DD"&&topNumber!="P") 
+            return (selectedColor == topColor || selectedNumber == topNumber || (selectedCard == "DD"&&topNumber!="P")
             || selectedCard == "DP" ||  cardTop == "DD" || cardTop == "DP");
         }
 
-       
+        private void Sort_Click(object sender, EventArgs e)
+        {
+            card.Sort();
+            DisplayFirstSixCards();
+        }
     }
 }

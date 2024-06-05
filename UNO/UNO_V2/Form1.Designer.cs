@@ -36,7 +36,7 @@
             // 
             server2.Location = new Point(26, 22);
             server2.Name = "server2";
-            server2.Size = new Size(94, 29);
+            server2.Size = new Size(216, 68);
             server2.TabIndex = 0;
             server2.Text = "server";
             server2.UseVisualStyleBackColor = true;
@@ -46,7 +46,7 @@
             // 
             Login.Location = new Point(26, 96);
             Login.Name = "Login";
-            Login.Size = new Size(94, 29);
+            Login.Size = new Size(216, 72);
             Login.TabIndex = 1;
             Login.Text = "Login";
             Login.UseVisualStyleBackColor = true;
@@ -56,7 +56,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(269, 238);
             Controls.Add(Login);
             Controls.Add(server2);
             Name = "Form1";

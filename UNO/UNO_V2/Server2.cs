@@ -200,12 +200,17 @@ namespace UNO_V2
                                     clientId = clientInfo[playerName].clientId;
                                     AddClientToRoom(clientSocket, clientId);
                                     SendClientId(writer, 0);
+
                                 }
                                 else
                                 {
-                                    if(clientId==4)
-                                        nextClientId = 0;
+                                   
                                     clientId = nextClientId++;
+                                    if (clientId == 5)
+                                    {
+                                        clientId=1;
+                                        nextClientId=2;
+                                    }
                                     clientInfo[playerName] = (password, clientId);
                                     clientStatus[playerName] = true;
                                     AddClientToRoom(clientSocket, clientId);
@@ -223,6 +228,7 @@ namespace UNO_V2
                             {
                                 for (int i = 0; i < 6; i++)
                                     await SendUnoCards(writer, room);
+                                MessageBox.Show(room.RoomName+room.PlayerCount);
                                 if (room.beg==0&&room.PlayerCount == 4)
                                 {
                                     room.beg=1;
@@ -233,7 +239,7 @@ namespace UNO_V2
                                 }
 
                                 // MessageBox.Show(room.RoomName+room.PlayerCount);
-
+                               // await writer.WriteLineAsync("LoginSuccessful");
                             }
                         }
                         else if (request == "draw")
@@ -247,7 +253,7 @@ namespace UNO_V2
                                 SendIdplay( room);
                                 await SendUnoCards(writer, room);
                             }
-                        }
+                        }/*
                         else if (request.StartsWith("Exit:"))
                         {
                             string[] loginInfo = request.Split(':')[1].Trim().Split(',');
@@ -258,7 +264,7 @@ namespace UNO_V2
                                 clientStatus[playerName] = false;
                                 Console.WriteLine($"Name: {playerName}, pass: {password} has left the server.");
                             }
-                        }
+                        }*/
                         else if (request.StartsWith("PlayCard:"))
                         {
                             Room room = FindRoomByClientSocket(clientSocket);
@@ -266,7 +272,6 @@ namespace UNO_V2
                             {
                                 room.Idcards[room.Idplay[room.Play] - 1]--;
                                 SendIdplay(room);
-
                                 string cards = request.Split(':')[1].Trim();
                                 await HandlePlayCard(writer, room, cards);
                             }
@@ -294,17 +299,6 @@ namespace UNO_V2
             room.PlayerNames[clientId] = clientId.ToString();
             room.PlayerCount++;
         }
-        private void AddPlayerToRoom(string playerName, int clientId, Socket clientSocket)
-        {
-            Room availableRoom = FindAvailableRoom();
-            availableRoom.PlayerNames[clientId] = playerName;
-            availableRoom.ClientIds[clientSocket] = clientId;
-            availableRoom.PlayerCount++;
-           
-        }
-
-        
-
         private Room FindAvailableRoom()
         {
             Room availableRoom = rooms.Values.FirstOrDefault(room => room.PlayerCount < 4);
@@ -344,6 +338,9 @@ namespace UNO_V2
 
                         // Send current cards count
                         writer.WriteLine("IDcards: " + string.Join(", ", room.Idcards));
+                        writer.Flush();
+
+                        writer.WriteLine("IDroom: " +  room.RoomName);
                         writer.Flush();
                     }
                 }
@@ -469,32 +466,23 @@ namespace UNO_V2
         {
             room.DataQueue2.Enqueue(card);
             SendUnoCardsTop(room, card);
-
+            room.Play = (room.Play + 1) % 4;
+            SendIdplay(room);
             if (card == "RDP" || card == "YDP" || card == "BDP" || card == "GDP" || card == "DP")
             {
                 room.Plus += 4;
-                room.Play = (room.Play + 1) % 4;
-                SendIdplay(room);
+               
                 SendPlus(room, card);
             }
-            else if (card == "RDD" || card == "YDD" || card == "BDD" || card == "GDD" || card == "DD")
-            {
-                room.Plus = 0;
-                room.Play = (room.Play + 1) % 4;
-                SendIdplay(room);
-            }
+       
             else if (card == "RP" || card == "YP" || card == "BP" || card == "GP")
             {
                 room.Plus += 2;
-                room.Play = (room.Play + 1) % 4;
-                SendIdplay(room);
                 SendPlus( room, card);
             }
             else
             {
                 room.Plus = 0;
-                room.Play = (room.Play + 1) % 4;
-                SendIdplay(room);
 
                 if (card == "BC" || card == "GC" || card == "YC" || card == "RC")
                 {
@@ -516,7 +504,7 @@ namespace UNO_V2
 
         private void SendPlus(Room room, string card)
         {
-
+            SendIdplay(room);
             foreach (Socket clientSocket in room.ClientIds.Keys)
             {
                 try
