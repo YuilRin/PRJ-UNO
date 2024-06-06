@@ -102,6 +102,10 @@ namespace UNO_V2
                         isPlay2.Visible=false;
                         isPlay3.Visible=false;
                         isPlay4.Visible=false;
+                        Green.Visible=false;
+                        Red.Visible=false;
+                        Blue.Visible=false;
+                        Yellow.Visible=false;
                     }
                     TopCard.Image = cardImages[cardName];
 

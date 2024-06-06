@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\Linh\\PRJ-UNO\\UNO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|e:\\linh\\prj-uno\\uno\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|E:\\Linh\\PRJ-UNO\\UNO\\uno_v2\\server2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\server2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|e:\\linh\\prj-uno\\uno\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|E:\\Linh\\PRJ-UNO\\UNO\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|e:\\linh\\prj-uno\\uno\\uno_v2\\server2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\server2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|e:\\linh\\prj-uno\\uno\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,13 +30,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Server2.cs",
               "DocumentMoniker": "E:\\Linh\\PRJ-UNO\\UNO\\UNO_V2\\Server2.cs",
               "RelativeDocumentMoniker": "UNO_V2\\Server2.cs",
               "ToolTip": "E:\\Linh\\PRJ-UNO\\UNO\\UNO_V2\\Server2.cs",
               "RelativeToolTip": "UNO_V2\\Server2.cs",
-              "ViewState": "AQIAANUAAAAAAAAAAAAAAO4AAAAlAAAA",
+              "ViewState": "AQIAAIEBAAAAAAAAAAAAwKQBAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-05T16:38:14.38Z",
               "EditorCaption": ""
@@ -49,14 +49,14 @@
               "RelativeDocumentMoniker": "UNO_V2\\playerV2.cs",
               "ToolTip": "E:\\Linh\\PRJ-UNO\\UNO\\UNO_V2\\playerV2.cs",
               "RelativeToolTip": "UNO_V2\\playerV2.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAcwGcAAAAuAAAA",
+              "ViewState": "AQIAAOYAAAAAAAAAAAAowGsAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-05T16:37:19.056Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "playerV2.cs [Design]",
               "DocumentMoniker": "E:\\Linh\\PRJ-UNO\\UNO\\UNO_V2\\playerV2.cs",
               "RelativeDocumentMoniker": "UNO_V2\\playerV2.cs",

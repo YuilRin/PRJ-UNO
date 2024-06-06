@@ -315,6 +315,12 @@ namespace UNO_V2
             room.ClientIds[clientSocket] = clientId;
             room.PlayerNames[clientId] = clientId.ToString();
             room.PlayerCount++;
+            using (NetworkStream stream = new NetworkStream(clientSocket))
+            using (StreamWriter writer = new StreamWriter(stream) { AutoFlush = true })
+            {
+                writer.WriteLine("IDroom: " +  room.RoomName);
+                writer.Flush();
+            }
         }
         private Room FindAvailableRoom()
         {
@@ -357,8 +363,8 @@ namespace UNO_V2
                         writer.WriteLine("IDcards: " + string.Join(", ", room.Idcards));
                         writer.Flush();
 
-                        writer.WriteLine("IDroom: " +  room.RoomName);
-                        writer.Flush();
+                        //writer.WriteLine("IDroom: " +  room.RoomName);
+                        //writer.Flush();
                     }
                 }
                 catch (Exception ex)
