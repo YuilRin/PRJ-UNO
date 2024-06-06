@@ -15,12 +15,17 @@ namespace UNO_V2
     {
         public string RoomName { get; set; }
         public int beg = 0;
+
         public Dictionary<Socket, int> ClientIds = new Dictionary<Socket, int>();
         public Dictionary<int, string> PlayerNames { get; set; }
         public Queue<string> DataQueue { get; private set; }
         public Queue<string> DataQueue2 { get; }
-        public int PlayerCount = 0;
-        public int CountBG = 0;
+
+
+        public int PlayerCount;
+
+        public int[] CountBG { get; }
+        public int CountBGT=0;
         public int[] Idplay { get; }
         public int Play { get; set; }
         public int[] Idcards { get; }
@@ -35,7 +40,8 @@ namespace UNO_V2
             DataQueue2 = new Queue<string>();
             Idplay = new int[] { 1, 2, 3, 4 };
             Idcards = new int[] { 0, 0, 0, 0 };
-            CountBG=0;
+            CountBG = new int[] {0,0,0,0,0};
+            CountBGT = 0;
             InitializeCardQueue();
         }
 
@@ -106,7 +112,7 @@ namespace UNO_V2
         private int nextClientId;
         private int nextRoomId;
         private Dictionary<string, (string password, int clientId)> clientInfo;
-        private Dictionary<string, bool> clientStatus;
+     //   private Dictionary<string, bool> clientStatus;
 
         public Server2()
         {
@@ -114,7 +120,7 @@ namespace UNO_V2
             nextClientId = 1; // Initial client ID
             nextRoomId = 1;   // Initial room ID
             clientInfo = new Dictionary<string, (string password, int clientId)>();
-            clientStatus = new Dictionary<string, bool>();
+          //  clientStatus = new Dictionary<string, bool>();
         }
 
         public void StartServer()
@@ -199,22 +205,26 @@ namespace UNO_V2
 
                                 if (clientInfo.ContainsKey(playerName) && clientInfo[playerName].password == password)
                                 {
-                                    clientId = clientInfo[playerName].clientId;
-                                    AddClientToRoom(clientSocket, clientId);
+                                   // clientId = clientInfo[playerName].clientId;
+                                    //AddClientToRoom(clientSocket, clientId);
                                     SendClientId(writer, 0);
 
                                 }
                                 else
                                 {
-                                   
-                                    clientId = nextClientId++;
-                                    if (clientId == 5)
-                                    {
+                                    Room room = FindAvailableRoom();
+                                    if (!room.ClientIds.ContainsValue(1))
                                         clientId=1;
-                                        nextClientId=2;
-                                    }
+                                    else if (!room.ClientIds.ContainsValue(2))
+                                        clientId=2;
+                                    else if (!room.ClientIds.ContainsValue(3))
+                                        clientId=3;
+                                    else if (!room.ClientIds.ContainsValue(4))
+                                        clientId=4;
+
+
                                     clientInfo[playerName] = (password, clientId);
-                                    clientStatus[playerName] = true;
+                                   // clientStatus[playerName] = true;
                                     AddClientToRoom(clientSocket, clientId);
                                     SendClientId(writer, clientId);
                                 }
@@ -228,18 +238,21 @@ namespace UNO_V2
                             Room room = FindRoomByClientSocket(clientSocket);
                             if (room != null)
                             {
-                                room.CountBG++;
+                               
+                                room.ClientIds.TryGetValue(clientSocket, out int Id);
+                                room.CountBG[Id]=1;
+                                 room.CountBGT=room.CountBG[1]+room.CountBG[2]+room.CountBG[3]+room.CountBG[4];
                                 foreach (Socket clSocket in room.ClientIds.Keys)
                                 {
                                     using (NetworkStream stream2 = new NetworkStream(clSocket))
                                     using (StreamWriter writer2 = new StreamWriter(stream2))
                                     {
-                                        writer2.WriteLine("isPlay:"+room.CountBG);
+                                        writer2.WriteLine("isPlay: " + string.Join(", ", room.CountBG));
                                         writer2.Flush();
                                     }
                                 }
                                 //MessageBox.Show(room.RoomName+room.PlayerCount);
-                                if (room.beg==0&&room.PlayerCount == 4&&room.CountBG==4)
+                                if (room.beg==0&&room.PlayerCount == 4&&room.CountBGT==4)
                                 {
                                     foreach (Socket clSocket in room.ClientIds.Keys)
                                     {
@@ -270,18 +283,30 @@ namespace UNO_V2
                                 SendIdplay( room);
                                 await SendUnoCards(writer, room);
                             }
-                        }/*
+                        }
                         else if (request.StartsWith("Exit:"))
                         {
+                            Room room = FindRoomByClientSocket(clientSocket);
                             string[] loginInfo = request.Split(':')[1].Trim().Split(',');
+                            room.ClientIds.TryGetValue(clientSocket, out int Id);
+                            room.CountBG[Id]=0;
                             if (loginInfo.Length >= 2)
                             {
                                 playerName = loginInfo[0].Trim();
                                 password = loginInfo[1].Trim();
-                                clientStatus[playerName] = false;
-                                Console.WriteLine($"Name: {playerName}, pass: {password} has left the server.");
+
+                                if (room != null)
+                                {
+                                    room.PlayerCount--;
+                                    room.CountBG[Id]=0;
+                                    room.ClientIds.Remove(clientSocket);
+                                    room.PlayerNames.Remove(clientInfo[playerName].clientId);
+                                    clientInfo.Remove(playerName);
+
+                                    MessageBox.Show($"Name: {playerName}, pass: {password} has exited the server.");
+                                }
                             }
-                        }*/
+                        }
                         else if (request.StartsWith("PlayCard:"))
                         {
                             Room room = FindRoomByClientSocket(clientSocket);
@@ -322,6 +347,7 @@ namespace UNO_V2
                 writer.Flush();
             }
         }
+        
         private Room FindAvailableRoom()
         {
             Room availableRoom = rooms.Values.FirstOrDefault(room => room.PlayerCount < 4);
@@ -355,6 +381,18 @@ namespace UNO_V2
                     using (NetworkStream stream = new NetworkStream(clientSocket))
                     using (StreamWriter writer = new StreamWriter(stream) { AutoFlush = true })
                     {
+                      ///  MessageBox.Show("isPlay: " + string.Join(", ", room.CountBG));
+                        int dem = 4;
+                        while (room.CountBG[room.Play+1]==0)
+                        {
+                            room.Play = (room.Play + 1) % 4;
+                            dem--;
+                            if (dem==0)
+                            {
+                                MessageBox.Show("Phong ko con nguoi choi");
+                                break;
+                            }
+                        }
                         // Send current player's ID
                         writer.WriteLine("IDplay: " + room.Idplay[room.Play]);
                         writer.Flush();
@@ -490,6 +528,8 @@ namespace UNO_V2
             room.DataQueue2.Enqueue(card);
             SendUnoCardsTop(room, card);
             room.Play = (room.Play + 1) % 4;
+           
+         
             SendIdplay(room);
             if (card == "RDP" || card == "YDP" || card == "BDP" || card == "GDP" || card == "DP")
             {
@@ -510,6 +550,7 @@ namespace UNO_V2
                 if (card == "BC" || card == "GC" || card == "YC" || card == "RC")
                 {
                     room.Play = (room.Play + 1) % 4;
+                    
                     SendIdplay(room);
                 }
                 else if (card == "BD" || card == "GD" || card == "YD" || card == "RD")
@@ -520,6 +561,7 @@ namespace UNO_V2
                     room.Idplay[(room.Play + 1) % 4] = room.Idplay[y];
                     room.Idplay[y] = temp;
                     room.Play = (room.Play + 1) % 4;
+                    
                     SendIdplay(room);
                 }
             }

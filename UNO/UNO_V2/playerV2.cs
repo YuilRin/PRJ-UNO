@@ -213,31 +213,41 @@ namespace UNO_V2
                     }
                     if (messagee.StartsWith("isPlay:"))
                     {
-                        int t = int.Parse(messagee.Split(':')[1].Trim());
-                        if (t == 1)
+
+                        isPlay1.BackColor = Color.White;
+                        isPlay2.BackColor = Color.White;
+                        isPlay3.BackColor = Color.White;
+                        isPlay4.BackColor = Color.White;
+                        string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
+                       // MessageBox.Show("*"+IDcards[1]+"*");
+                        if (IDcards[1]==" 1")
                         {
                             isPlay1.BackColor = Color.Yellow;
                         }
-                        if (t == 2)
+                        if (IDcards[2]==" 1")
                         {
-                            isPlay1.BackColor = Color.Yellow;
+                          //  isPlay1.BackColor = Color.Yellow;
                             isPlay2.BackColor = Color.Yellow;
                         }
-                        if (t == 3)
+                        if (IDcards[3] == " 1")
                         {
-                            isPlay1.BackColor = Color.Yellow;
-                            isPlay2.BackColor = Color.Yellow;
+                            //isPlay1.BackColor = Color.Yellow;
+                            //isPlay2.BackColor = Color.Yellow;
                             isPlay3.BackColor = Color.Yellow;
                         }
-                        if (t == 4)
+                        if (IDcards[4] == " 1")
                         {
                             isPlay4.BackColor = Color.Yellow;
                            
+                          
+                        }
+                        if (IDcards[1]=="1"&&IDcards[2]=="1"&&IDcards[3]=="1"&&IDcards[4]=="1")
+                        {
                             isPlay1.Visible=false;
                             isPlay2.Visible=false;
                             isPlay3.Visible=false;
                             isPlay4.Visible=false;
-                        }
+                        }    
 
                     }
                     if (messagee.StartsWith("IDroom: "))
@@ -347,7 +357,7 @@ namespace UNO_V2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error receiving messages from server: " + ex.Message);
+                //MessageBox.Show("Error receiving messages from server: " + ex.Message);
             }
         }
 
@@ -384,7 +394,7 @@ namespace UNO_V2
         private void Player_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (writer != null)
+            if (writer != null&&clientId!=0)
             {
                 writer.WriteLineAsync($"Exit: {ten}, {mk}");
                 writer.Flush();
