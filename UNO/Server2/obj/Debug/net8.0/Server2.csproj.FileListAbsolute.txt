@@ -1,0 +1,15 @@
+E:\Linh\PRJ-UNO\UNO\Server2\bin\Debug\net8.0\Server2.exe
+E:\Linh\PRJ-UNO\UNO\Server2\bin\Debug\net8.0\Server2.deps.json
+E:\Linh\PRJ-UNO\UNO\Server2\bin\Debug\net8.0\Server2.runtimeconfig.json
+E:\Linh\PRJ-UNO\UNO\Server2\bin\Debug\net8.0\Server2.dll
+E:\Linh\PRJ-UNO\UNO\Server2\bin\Debug\net8.0\Server2.pdb
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.GeneratedMSBuildEditorConfig.editorconfig
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.AssemblyInfoInputs.cache
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.AssemblyInfo.cs
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.csproj.CoreCompileInputs.cache
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.sourcelink.json
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.dll
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\refint\Server2.dll
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.pdb
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\Server2.genruntimeconfig.cache
+E:\Linh\PRJ-UNO\UNO\Server2\obj\Debug\net8.0\ref\Server2.dll

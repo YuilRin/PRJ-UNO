@@ -3,7 +3,6 @@ E:\Linh\PRJ-UNO\UNO\UNO_V2\bin\Debug\net8.0-windows\UNO_V2.deps.json
 E:\Linh\PRJ-UNO\UNO\UNO_V2\bin\Debug\net8.0-windows\UNO_V2.runtimeconfig.json
 E:\Linh\PRJ-UNO\UNO\UNO_V2\bin\Debug\net8.0-windows\UNO_V2.dll
 E:\Linh\PRJ-UNO\UNO\UNO_V2\bin\Debug\net8.0-windows\UNO_V2.pdb
-E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.Form1.resources
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.Login.resources
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.playerV2.resources
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.csproj.GenerateResource.cache
