@@ -325,6 +325,15 @@ namespace UNO_V2
                                 IDcard.Visible = true;
                             }
                             PlayAgain.Visible=true;
+                            if (writer != null&&clientId!=0)
+                            {
+                                writer.WriteLineAsync($"Exit: {ten}, {mk}");
+                                writer.Flush();
+                            }
+                            // Đóng kết nối khi đóng form
+                            if (client != null)
+                                client.Close();
+                            cancellationTokenSource.Cancel();
                         }
                     }
 
@@ -698,15 +707,7 @@ namespace UNO_V2
 
         private void PlayAgain_Click(object sender, EventArgs e)
         {
-            if (writer != null)
-            {
-                writer.WriteLineAsync($"Exit: {ten}, {mk}");
-                writer.Flush();
-            }
-            // Đóng kết nối khi đóng form
-            if (client != null)
-                client.Close();
-            cancellationTokenSource.Cancel();
+            
             playerV2 a = new playerV2(ten);
                 a.Show();
             this.Close();

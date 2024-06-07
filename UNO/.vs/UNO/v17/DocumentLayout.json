@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|e:\\linh\\prj-uno\\uno\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|E:\\Linh\\PRJ-UNO\\UNO\\uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\playerv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{20495044-C7DA-456B-92D9-A2C155328E07}|UNO_V2\\UNO_V2.csproj|solutionrelative:uno_v2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6C6698F-32E3-45D5-A9F7-C6C8EE44BB46}|Server2\\Server2.csproj|e:\\linh\\prj-uno\\uno\\server2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C6C6698F-32E3-45D5-A9F7-C6C8EE44BB46}|Server2\\Server2.csproj|E:\\Linh\\PRJ-UNO\\UNO\\server2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6C6698F-32E3-45D5-A9F7-C6C8EE44BB46}|Server2\\Server2.csproj|solutionrelative:server2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "UNO_V2\\playerV2.cs",
               "ToolTip": "E:\\Linh\\PRJ-UNO\\UNO\\UNO_V2\\playerV2.cs",
               "RelativeToolTip": "UNO_V2\\playerV2.cs",
-              "ViewState": "AQIAALMCAAAAAAAAAAAewLwCAAAeAAAA",
+              "ViewState": "AQIAALMCAAAAAAAAAAApwMUCAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-07T17:40:45.597Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Server2\\Program.cs",
               "ViewState": "AQIAAEUCAAAAAAAAAAAuwFUCAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T05:37:50.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-07T05:37:50.805Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "UNO_V2\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T04:18:34.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-07T04:18:34.682Z"
             }
           ]
         },
