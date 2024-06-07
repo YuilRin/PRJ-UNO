@@ -95,8 +95,8 @@ namespace UNO_V2
 
                         }
                         #region Code giao diện các thành phần
-                       
-                     
+
+
                         isPlay1.Visible=false;
                         isPlay2.Visible=false;
                         isPlay3.Visible=false;
@@ -308,6 +308,7 @@ namespace UNO_V2
                         // Kiểm tra end game
                         if (players.Any(player => player.Text == "0"))
                         {
+                            
                             foreach (Control control in this.Controls)
                             {
                                 control.Visible = false;
@@ -316,12 +317,14 @@ namespace UNO_V2
                             if (players[clientId - 1].Text == "0")
                             {
                                 IDcard.Text = "you win";
+                                IDcard.Visible = true;
                             }
                             else
                             {
                                 IDcard.Text = "you lost";
                                 IDcard.Visible = true;
                             }
+                            PlayAgain.Visible=true;
                         }
                     }
 
@@ -504,14 +507,16 @@ namespace UNO_V2
         {
             PictureBox pictureBox = sender as PictureBox;
             string name = pictureBox.Name.Replace("pictureBox", "");
-            if (pictureBox != null)
-            {
-               
 
-                if (int.TryParse(name, out int index))
+            if (pictureBox != null && int.TryParse(name, out int index))
+            {
+                index = index - 1 + currentIndex;
+
+                // Kiểm tra xem index có nằm trong phạm vi hợp lệ của danh sách card không
+                if (index >= 0 && index < card.Count)
                 {
-                    index = index - 1 + currentIndex;
                     string selectedCard = card[index];
+
                     if (IsPlayable(selectedCard, cardTop))
                     {
                         if (pictureBoxStates.TryGetValue(pictureBox, out bool isClicked) && isClicked)
@@ -520,11 +525,11 @@ namespace UNO_V2
                             pictureBoxStates[pictureBox] = false;
                             pictureBox.BackColor = Color.Transparent; // Loại bỏ viền vàng
                             card.RemoveAt(index);
+
                             if (selectedCard[0] == 'D')
                                 SendColorToServer(selectedCard);
                             else
                                 SendCardToServer(selectedCard);
-
                         }
                         else
                         {
@@ -532,7 +537,6 @@ namespace UNO_V2
                             pictureBoxStates[pictureBox] = true;
                             pictureBox.BackColor = Color.Yellow; // Thêm viền vàng
                         }
-                        
                     }
                     else
                     {
@@ -546,6 +550,7 @@ namespace UNO_V2
                 }
             }
         }
+
 
 
         int B = 0, G = 0, R = 0, Y = 0;
@@ -689,6 +694,23 @@ namespace UNO_V2
         {
             card.Sort();
             DisplayFirstSixCards();
+        }
+
+        private void PlayAgain_Click(object sender, EventArgs e)
+        {
+            if (writer != null)
+            {
+                writer.WriteLineAsync($"Exit: {ten}, {mk}");
+                writer.Flush();
+            }
+            // Đóng kết nối khi đóng form
+            if (client != null)
+                client.Close();
+            cancellationTokenSource.Cancel();
+            playerV2 a = new playerV2(ten);
+                a.Show();
+            this.Close();
+
         }
     }
 }

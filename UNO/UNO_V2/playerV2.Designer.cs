@@ -69,6 +69,7 @@
             isPlay2 = new Button();
             isPlay3 = new Button();
             isPlay4 = new Button();
+            PlayAgain = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -508,11 +509,23 @@
             isPlay4.Text = "Player4";
             isPlay4.UseVisualStyleBackColor = true;
             // 
+            // PlayAgain
+            // 
+            PlayAgain.Location = new Point(533, 137);
+            PlayAgain.Name = "PlayAgain";
+            PlayAgain.Size = new Size(94, 29);
+            PlayAgain.TabIndex = 34;
+            PlayAgain.Text = "PlayAgain";
+            PlayAgain.UseVisualStyleBackColor = true;
+            PlayAgain.Visible = false;
+            PlayAgain.Click += PlayAgain_Click;
+            // 
             // playerV2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(778, 452);
+            Controls.Add(PlayAgain);
             Controls.Add(isPlay4);
             Controls.Add(isPlay3);
             Controls.Add(isPlay2);
@@ -621,5 +634,6 @@
         private Button isPlay2;
         private Button isPlay3;
         private Button isPlay4;
+        private Button PlayAgain;
     }
 }
