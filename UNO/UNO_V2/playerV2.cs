@@ -88,16 +88,15 @@ namespace UNO_V2
                     {
                         foreach (Control ctr in this.Controls)
                         {
-                            if (ctr is Button)
+                            if (ctr is Button cs)
                             {
-                                ctr.Visible = true;
+                                cs.Visible = true;
                             }
 
                         }
-                        draw.Visible=true;
-                        Sort.Visible=true;
-                        back.Visible=true;
-                        Next.Visible=true;
+                        #region Code giao diện các thành phần
+                       
+                     
                         isPlay1.Visible=false;
                         isPlay2.Visible=false;
                         isPlay3.Visible=false;
@@ -106,6 +105,10 @@ namespace UNO_V2
                         Red.Visible=false;
                         Blue.Visible=false;
                         Yellow.Visible=false;
+                        Ready.Visible=false;
+                        lbLastCard.Visible=true;
+                        #endregion
+
                     }
                     TopCard.Image = cardImages[cardName];
 
@@ -124,35 +127,25 @@ namespace UNO_V2
         // Hàm xử lý khi nhận được thẻ từ server
         private void HandleCardReceived(string cards)
         {
-            IDcard.Text=cards;
-            if (cards == "RDP" || cards == "YDP" || cards == "BDP" || cards == "GDP"||cards== "DP")
+            IDcard.Text = cards;
+            bool isDP = cards.EndsWith("DP");
+            bool isDD = cards.EndsWith("DD");
+
+            if (isDP || isDD)
             {
-                DisplayCard("DP");
-                if (cards=="BDP")
-                    Blue.Visible = true;
-                if (cards=="GDP")
-                    Green.Visible = true;
-                if (cards=="RDP")
-                    Red.Visible = true;
-                if (cards=="YDP")
-                    Yellow.Visible = true;
-            }
-            else if (cards == "RDD" || cards == "YDD" || cards == "BDD" || cards == "GDD"||cards=="DD")
-            {
-                DisplayCard("DD");
-                if (cards=="BDD")
-                    Blue.Visible = true;
-                if (cards=="GDD")
-                    Green.Visible = true;
-                if (cards=="RDD")
-                    Red.Visible = true;
-                if (cards=="YDD")
-                    Yellow.Visible = true;
+                DisplayCard(isDP ? "DP" : "DD");
+
+                Blue.Visible = cards.StartsWith("B");
+                Green.Visible = cards.StartsWith("G");
+                Red.Visible = cards.StartsWith("R");
+                Yellow.Visible = cards.StartsWith("Y");
             }
             else
+            {
                 DisplayCard(cards);
-
+            }
         }
+
         // Hàm xử lý khi khởi động
         private async void Player_Load(object sender, EventArgs e)
         {
@@ -175,7 +168,7 @@ namespace UNO_V2
             {
                 ten=NameBox.Text;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await client.ConnectAsync(IPAddress.Parse(IpServer), 8080); // Thay đổi địa chỉ IP và cổng nếu cần
+                await client.ConnectAsync(IPAddress.Parse(IpServer), 50000); // Thay đổi địa chỉ IP và cổng nếu cần
                 networkStream = new NetworkStream(client);
                 reader = new StreamReader(networkStream);
                 writer = new StreamWriter(networkStream) { AutoFlush = true };
@@ -213,82 +206,63 @@ namespace UNO_V2
                     }
                     if (messagee.StartsWith("isPlay:"))
                     {
+                        // Đặt tất cả các BackColor của isPlay về màu trắng
+                        var isPlayControls = new[] { isPlay1, isPlay2, isPlay3, isPlay4 };
+                        foreach (var control in isPlayControls)
+                        {
+                            control.BackColor = Color.White;
+                        }
 
-                        isPlay1.BackColor = Color.White;
-                        isPlay2.BackColor = Color.White;
-                        isPlay3.BackColor = Color.White;
-                        isPlay4.BackColor = Color.White;
                         string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
-                       // MessageBox.Show("*"+IDcards[1]+"*");
-                        if (IDcards[1]==" 1")
+
+                        // Đặt màu nền là màu vàng nếu giá trị là " 1"
+                        for (int i = 1; i <= 4; i++)
                         {
-                            isPlay1.BackColor = Color.Yellow;
+                            if (IDcards[i] == " 1")
+                            {
+                                isPlayControls[i - 1].BackColor = Color.Yellow;
+                            }
                         }
-                        if (IDcards[2]==" 1")
+
+                        // Ẩn các điều khiển nếu tất cả giá trị là "1"
+                        if (IDcards.Skip(1).Take(4).All(id => id.Trim() == "1"))
                         {
-                          //  isPlay1.BackColor = Color.Yellow;
-                            isPlay2.BackColor = Color.Yellow;
+                            foreach (var control in isPlayControls)
+                            {
+                                control.Visible = false;
+                            }
                         }
-                        if (IDcards[3] == " 1")
-                        {
-                            //isPlay1.BackColor = Color.Yellow;
-                            //isPlay2.BackColor = Color.Yellow;
-                            isPlay3.BackColor = Color.Yellow;
-                        }
-                        if (IDcards[4] == " 1")
-                        {
-                            isPlay4.BackColor = Color.Yellow;
-                           
-                          
-                        }
-                        if (IDcards[1]=="1"&&IDcards[2]=="1"&&IDcards[3]=="1"&&IDcards[4]=="1")
-                        {
-                            isPlay1.Visible=false;
-                            isPlay2.Visible=false;
-                            isPlay3.Visible=false;
-                            isPlay4.Visible=false;
-                        }    
 
                     }
                     if (messagee.StartsWith("IDroom: "))
                     {
                         Room.Text = messagee.Split(':')[1].Trim();
                     }
+
                     // Kiểm tra nếu tin nhắn chứa id lượt của người chơi
                     if (messagee.StartsWith("IDplay: "))
                     {
                         foreach (Control control in this.Controls)
                             if (control is GroupBox)
                                 control.BackColor = Color.White;
+
                         Idplay = int.Parse(messagee.Split(':')[1].Trim());
 
-                        if (Idplay==1)
+                        // Mảng các GroupBox
+                        var groupBoxes = new GroupBox[] { groupBoxp1, groupBoxp2, groupBoxp3, groupBoxp4 };
+
+                        if (Idplay >= 1 && Idplay <= 4)
                         {
-                            if (Idplay==clientId)
-                                groupBoxp1.BackColor= Color.Red;
+                            var targetGroupBox = groupBoxes[Idplay - 1];
+
+                            if (Idplay == clientId)
+                            {
+                                targetGroupBox.BackColor = Color.Red;
+                            }
                             else
-                                groupBoxp1.BackColor= Color.FromArgb(255, 255, 128);
-                        }
-                        if (Idplay==2)
-                        {
-                            if (Idplay==clientId)
-                                groupBoxp2.BackColor= Color.Red;
-                            else
-                                groupBoxp2.BackColor= Color.FromArgb(255, 255, 128);
-                        }
-                        if (Idplay==3)
-                        {
-                            if (Idplay==clientId)
-                                groupBoxp3.BackColor= Color.Red;
-                            else
-                                groupBoxp3.BackColor= Color.FromArgb(255, 255, 128);
-                        }
-                        if (Idplay==4)
-                        {
-                            if (Idplay==clientId)
-                                groupBoxp4.BackColor= Color.Red;
-                            else
-                                groupBoxp4.BackColor= Color.FromArgb(255, 255, 128);
+                            {
+                                targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
+                            }
                         }
                     }
                     // Kiểm tra nếu tin nhắn chứa lá bài rút
@@ -324,38 +298,40 @@ namespace UNO_V2
                     {
                         // số lượng lá bài của mỗi player
                         string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
-                        player1.Text= IDcards[0];
-                        player2.Text= IDcards[1];
-                        player3.Text= IDcards[2];
-                        player4.Text= IDcards[3];
-                        //end game
-                        if (player1.Text=="0"
-                          ||player2.Text=="0"
-                          ||player3.Text=="0"
-                          ||player4.Text=="0")
-                            foreach (Control control in this.Controls)
-                                control.Visible = false;
+                        var players = new[] { player1, player2, player3, player4 };
 
-                        if (((player1.Text=="0")&&(clientId==1)
-                          ||((player2.Text=="0")&&(clientId==2))
-                          ||((player3.Text=="0")&&(clientId==3))
-                          ||((player4.Text=="0")&&(clientId==4))))
-                            IDcard.Text="you win";
-
-                        else
-                        if (IDcards[0] == "0" || IDcards[1] == "0" || IDcards[2] == "0" || IDcards[3] == "0")
+                        for (int i = 0; i < players.Length; i++)
                         {
-                            IDcard.Text="you lost";
-                            IDcard.Visible=true;
+                            players[i].Text = IDcards[i];
+                        }
+
+                        // Kiểm tra end game
+                        if (players.Any(player => player.Text == "0"))
+                        {
+                            foreach (Control control in this.Controls)
+                            {
+                                control.Visible = false;
+                            }
+
+                            if (players[clientId - 1].Text == "0")
+                            {
+                                IDcard.Text = "you win";
+                            }
+                            else
+                            {
+                                IDcard.Text = "you lost";
+                                IDcard.Visible = true;
+                            }
                         }
                     }
+
                 }
             }
             catch (OperationCanceledException)
             {
                 MessageBox.Show("Disconnected from server.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //MessageBox.Show("Error receiving messages from server: " + ex.Message);
             }
@@ -469,13 +445,6 @@ namespace UNO_V2
             else
                 UpdatePictureBoxes();
         }
-        /// <summary>
-        /// 0 1 2 3 4 5
-        /// 6 7 8
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
         // Xử lý khi bấm nút Back
         private void BackButton_Click(object sender, EventArgs e)
@@ -528,34 +497,57 @@ namespace UNO_V2
             }
             else MessageBox.Show("Bạn bị *** à. Đây không phải lượt của bạn");
         }
-        private void CardButton_Click(object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-            if (button != null)
-            {
-                // Xác định vị trí của button trong danh sách
-                int index = int.Parse(button.Name.Replace("button", "")) - 1+currentIndex;
-                string selectedCard = card[index];
-                if (IsPlayable(selectedCard, cardTop))
-                {
-                    card.RemoveAt(index);
-                    if (selectedCard[0]=='D')
-                        SendColorToServer(selectedCard);
-                    else
-                        SendCardToServer(selectedCard);
-                }
-                else
-                {
-                    if (clientId==Idplay)
-                        MessageBox.Show("You cannot play this card.");
-                    else
-                        MessageBox.Show("It not your turn");
-                    //+clientId+Idplay);
-                }
 
-                UpdatePictureBoxes();
+        private Dictionary<PictureBox, bool> pictureBoxStates = new Dictionary<PictureBox, bool>();
+
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            PictureBox pictureBox = sender as PictureBox;
+            string name = pictureBox.Name.Replace("pictureBox", "");
+            if (pictureBox != null)
+            {
+               
+
+                if (int.TryParse(name, out int index))
+                {
+                    index = index - 1 + currentIndex;
+                    string selectedCard = card[index];
+                    if (IsPlayable(selectedCard, cardTop))
+                    {
+                        if (pictureBoxStates.TryGetValue(pictureBox, out bool isClicked) && isClicked)
+                        {
+                            // Bấm lần thứ hai: thực hiện hoạt động
+                            pictureBoxStates[pictureBox] = false;
+                            pictureBox.BackColor = Color.Transparent; // Loại bỏ viền vàng
+                            card.RemoveAt(index);
+                            if (selectedCard[0] == 'D')
+                                SendColorToServer(selectedCard);
+                            else
+                                SendCardToServer(selectedCard);
+
+                        }
+                        else
+                        {
+                            // Bấm lần đầu: thêm viền vàng
+                            pictureBoxStates[pictureBox] = true;
+                            pictureBox.BackColor = Color.Yellow; // Thêm viền vàng
+                        }
+                        
+                    }
+                    else
+                    {
+                        if (clientId == Idplay)
+                            MessageBox.Show("You cannot play this card.");
+                        else
+                            MessageBox.Show("It is not your turn.");
+                    }
+
+                    UpdatePictureBoxes();
+                }
             }
         }
+
+
         int B = 0, G = 0, R = 0, Y = 0;
         bool colorSelected = false;
         private async Task SendColorToServer(string selectedCard)
@@ -565,13 +557,12 @@ namespace UNO_V2
                 // Gửi thông tin lá bài và màu đã chọn lên server
                 if (IsPlayable(selectedCard, cardTop))
                 {
-                    Blue.Visible = true;
-                    Green.Visible = true;
-                    Red.Visible = true;
-                    Yellow.Visible = true;
-                    B=0; G=0; R=0; Y=0;
-                    string t = "";
+                    // Hiển thị các nút màu
+                    Blue.Visible = Green.Visible = Red.Visible = Yellow.Visible = true;
+                    B = G = R = Y = 0;
+                    string selectedColor = "";
 
+                    // Chờ người dùng chọn màu
                     await Task.Run(() =>
                     {
                         while (!colorSelected)
@@ -579,27 +570,29 @@ namespace UNO_V2
                             Thread.Sleep(100); // Đợi người dùng chọn màu
                         }
                     });
-                    Blue.Visible = false;
-                    Green.Visible = false;
-                    Red.Visible = false;
-                    Yellow.Visible = false;
-                    if (B==1)
-                        t="B"+selectedCard;
-                    if (G==1)
-                        t="G"+selectedCard;
-                    if (R==1)
-                        t="R"+selectedCard;
-                    if (Y==1)
-                        t="Y"+selectedCard;
+
+                    // Ẩn các nút màu
+                    Blue.Visible = Green.Visible = Red.Visible = Yellow.Visible = false;
+
+                    // Kiểm tra màu đã chọn
+                    if (B == 1) selectedColor = "B";
+                    if (G == 1) selectedColor = "G";
+                    if (R == 1) selectedColor = "R";
+                    if (Y == 1) selectedColor = "Y";
+
+                    // Ghép màu đã chọn với lá bài
+                    string cardToSend = selectedColor + selectedCard;
 
                     // Reset trạng thái chọn màu
                     colorSelected = false;
-                    await writer.WriteLineAsync($"PlayCard: {t}");
+
+                    // Gửi thông tin lên server
+                    await writer.WriteLineAsync($"PlayCard: {cardToSend}");
                     await writer.FlushAsync();
+
+                    // Reset trạng thái Plus
                     plus = 0;
                     PlusTable.Text = plus.ToString();
-
-
                 }
             }
             catch (Exception ex)
@@ -608,24 +601,32 @@ namespace UNO_V2
             }
         }
 
-        private void Yellow_Click(object sender, EventArgs e)
-        {
-            Y=1; colorSelected=true;
-        }
 
-        private void Green_Click(object sender, EventArgs e)
+        private void ColorButton_Click(object sender, EventArgs e)
         {
-            G=1; colorSelected=true;
-        }
+            // Đặt tất cả giá trị màu về 0
+            B = G = R = Y = 0;
 
-        private void Blue_Click(object sender, EventArgs e)
-        {
-            B=1; colorSelected=true;
-        }
+            // Xác định nút màu nào đã được nhấn và đặt giá trị tương ứng
+            if (sender == Blue)
+            {
+                B = 1;
+            }
+            else if (sender == Green)
+            {
+                G = 1;
+            }
+            else if (sender == Red)
+            {
+                R = 1;
+            }
+            else if (sender == Yellow)
+            {
+                Y = 1;
+            }
 
-        private void Red_Click(object sender, EventArgs e)
-        {
-            R=1; colorSelected=true;
+            // Đặt cờ colorSelected thành true để báo rằng người dùng đã chọn màu
+            colorSelected = true;
         }
 
         private async Task SendCardToServer(string cardName)
@@ -655,6 +656,7 @@ namespace UNO_V2
             string topColor = cardTop.Substring(0, 1);
             string topNumber = cardTop.Substring(1);
             string cards = cardTop;
+
             if (cardTop=="DD"||cardTop=="DP")
                 return true;
             if (Idplay!=clientId)
@@ -688,7 +690,5 @@ namespace UNO_V2
             card.Sort();
             DisplayFirstSixCards();
         }
-
-       
     }
 }

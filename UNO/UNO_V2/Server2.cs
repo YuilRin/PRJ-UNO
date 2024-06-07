@@ -109,7 +109,7 @@ namespace UNO_V2
         private Socket serverSocket;
         private Thread serverThread;
         private bool isServerRunning;
-        private int nextClientId;
+      //  private int nextClientId;
         private int nextRoomId;
         private Dictionary<string, (string password, int clientId)> clientInfo;
      //   private Dictionary<string, bool> clientStatus;
@@ -117,7 +117,7 @@ namespace UNO_V2
         public Server2()
         {
             rooms = new Dictionary<string, Room>();
-            nextClientId = 1; // Initial client ID
+          //  nextClientId = 1; // Initial client ID
             nextRoomId = 1;   // Initial room ID
             clientInfo = new Dictionary<string, (string password, int clientId)>();
           //  clientStatus = new Dictionary<string, bool>();
@@ -129,7 +129,7 @@ namespace UNO_V2
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // Bind the socket to a specific IP address and port
-            serverSocket.Bind(new IPEndPoint(IPAddress.Any, 8080));
+            serverSocket.Bind(new IPEndPoint(IPAddress.Any, 50000));
 
             // Start listening for incoming connections
             serverSocket.Listen(4);
@@ -201,11 +201,11 @@ namespace UNO_V2
                             {
                                 playerName = loginInfo[0].Trim();
                                 password = loginInfo[1].Trim();
-                                
+
 
                                 if (clientInfo.ContainsKey(playerName) && clientInfo[playerName].password == password)
                                 {
-                                   // clientId = clientInfo[playerName].clientId;
+                                    // clientId = clientInfo[playerName].clientId;
                                     //AddClientToRoom(clientSocket, clientId);
                                     SendClientId(writer, 0);
 
@@ -224,9 +224,26 @@ namespace UNO_V2
 
 
                                     clientInfo[playerName] = (password, clientId);
-                                   // clientStatus[playerName] = true;
+                                    // clientStatus[playerName] = true;
                                     AddClientToRoom(clientSocket, clientId);
                                     SendClientId(writer, clientId);
+
+                                    if (room != null)
+                                    {
+
+                                        room.ClientIds.TryGetValue(clientSocket, out int Id);
+                                        //room.CountBG[Id]=1;
+                                        room.CountBGT=room.CountBG[1]+room.CountBG[2]+room.CountBG[3]+room.CountBG[4];
+                                        foreach (Socket clSocket in room.ClientIds.Keys)
+                                        {
+                                            using (NetworkStream stream2 = new NetworkStream(clSocket))
+                                            using (StreamWriter writer2 = new StreamWriter(stream2))
+                                            {
+                                                writer2.WriteLine("isPlay: " + string.Join(", ", room.CountBG));
+                                                writer2.Flush();
+                                            }
+                                        }
+                                    }
                                 }
 
                                 Console.WriteLine($"Name: {playerName}, pass: {password} has joined the server.");
@@ -303,7 +320,7 @@ namespace UNO_V2
                                     room.PlayerNames.Remove(clientInfo[playerName].clientId);
                                     clientInfo.Remove(playerName);
 
-                                    MessageBox.Show($"Name: {playerName}, pass: {password} has exited the server.");
+                                   // MessageBox.Show($"Name: {playerName}, pass: {password} has exited the server.");
                                 }
                             }
                         }
@@ -315,7 +332,7 @@ namespace UNO_V2
                                 room.Idcards[room.Idplay[room.Play] - 1]--;
                                 SendIdplay(room);
                                 string cards = request.Split(':')[1].Trim();
-                                await HandlePlayCard(writer, room, cards);
+                                HandlePlayCard(writer, room, cards);
                             }
                         }
                         else
@@ -523,7 +540,7 @@ namespace UNO_V2
         }
 
 
-        private async Task HandlePlayCard(StreamWriter writer, Room room, string card)
+        private void HandlePlayCard(StreamWriter writer, Room room, string card)
         {
             room.DataQueue2.Enqueue(card);
             SendUnoCardsTop(room, card);
