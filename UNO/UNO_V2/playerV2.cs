@@ -92,6 +92,14 @@ namespace UNO_V2
                             {
                                 cs.Visible = true;
                             }
+                            if (ctr is PictureBox pt)
+                            {
+                                pt.Visible = true;
+                            }    
+                            if (ctr is GroupBox grp)
+                            {
+                                grp.Visible = true;
+                            }
 
                         }
                         #region Code giao diện các thành phần
@@ -107,6 +115,9 @@ namespace UNO_V2
                         Yellow.Visible=false;
                         Ready.Visible=false;
                         lbLastCard.Visible=true;
+                        currentIndextb.Visible=true;
+                        Cong.Visible=true;
+                        PlusTable.Visible=true;
                         #endregion
 
                     }
@@ -193,8 +204,51 @@ namespace UNO_V2
                         MessageBox.Show("Disconnected from server.");
                         break;
                     }
+                    else if (messagee.StartsWith("IDcards: "))
+                    {
+                        // số lượng lá bài của mỗi player
+                        string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
+                        var players = new[] { player1, player2, player3, player4 };
+
+                        for (int i = 0; i < players.Length; i++)
+                        {
+                            players[i].Text = IDcards[i];
+                        }
+
+                        // Kiểm tra end game
+                        if (players.Any(player => player.Text == "0"))
+                        {
+
+                            foreach (Control control in this.Controls)
+                            {
+                                control.Visible = false;
+                            }
+
+                            if (players[clientId - 1].Text == "0")
+                            {
+                                IDcard.Text = "you win";
+                                IDcard.Visible = true;
+                            }
+                            else
+                            {
+                                IDcard.Text = "you lost";
+                                IDcard.Visible = true;
+                            }
+                            PlayAgain.Visible=true;
+                            if (writer != null&&clientId!=0)
+                            {
+                                writer.WriteLineAsync($"Exit: {ten}, {mk}");
+                                writer.Flush();
+                            }
+                            // Đóng kết nối khi đóng form
+                            if (client != null)
+                                client.Close();
+                            cancellationTokenSource.Cancel();
+                            break;
+                        }
+                    }
                     // Kiểm tra nếu tin nhắn chứa danh sách client đang online
-                    if (messagee.StartsWith("Your ID is:"))
+                    else if (messagee.StartsWith("Your ID is:"))
                     {
                         clientId = int.Parse(messagee.Split(':')[1].Trim());
                         if (clientId == 0)
@@ -204,7 +258,7 @@ namespace UNO_V2
                         }
                         UpdateClientIdLabel(clientId);
                     }
-                    if (messagee.StartsWith("isPlay:"))
+                    else if (messagee.StartsWith("isPlay:"))
                     {
                         // Đặt tất cả các BackColor của isPlay về màu trắng
                         var isPlayControls = new[] { isPlay1, isPlay2, isPlay3, isPlay4 };
@@ -234,13 +288,13 @@ namespace UNO_V2
                         }
 
                     }
-                    if (messagee.StartsWith("IDroom: "))
+                    else if (messagee.StartsWith("IDroom: "))
                     {
                         Room.Text = messagee.Split(':')[1].Trim();
                     }
 
                     // Kiểm tra nếu tin nhắn chứa id lượt của người chơi
-                    if (messagee.StartsWith("IDplay: "))
+                    else if (messagee.StartsWith("IDplay: "))
                     {
                         foreach (Control control in this.Controls)
                             if (control is GroupBox)
@@ -265,8 +319,16 @@ namespace UNO_V2
                             }
                         }
                     }
+
                     // Kiểm tra nếu tin nhắn chứa lá bài rút
-                    if (messagee.StartsWith("Card:"))
+                    else if (messagee.StartsWith("CardTop: "))
+                    {
+                        cardTop = messagee.Split(':')[1].Trim();
+
+                        HandleCardReceived(cardTop);
+
+                    }
+                    else if (messagee.StartsWith("Card:"))
                     {
                         string cardName = messagee.Split(':')[1].Trim();
 
@@ -275,14 +337,8 @@ namespace UNO_V2
                         currentIndex=0;
                         DisplayFirstSixCards();
                     }
-                    else if (messagee.StartsWith("CardTop: "))
-                    {
-                        cardTop = messagee.Split(':')[1].Trim();
 
-                        HandleCardReceived(cardTop);
-
-                    }
-                    if (messagee.StartsWith("Plus: "))
+                    else if (messagee.StartsWith("Plus: "))
                     {
                         // Phân tích tin nhắn để lấy thông tin tên, loại và số của lá bài
                         string[] parts = messagee.Split(' ');
@@ -294,48 +350,7 @@ namespace UNO_V2
                         }
 
                     }
-                    if (messagee.StartsWith("IDcards: "))
-                    {
-                        // số lượng lá bài của mỗi player
-                        string[] IDcards = messagee.Split(':')[1].Trim().Split(',');
-                        var players = new[] { player1, player2, player3, player4 };
 
-                        for (int i = 0; i < players.Length; i++)
-                        {
-                            players[i].Text = IDcards[i];
-                        }
-
-                        // Kiểm tra end game
-                        if (players.Any(player => player.Text == "0"))
-                        {
-                            
-                            foreach (Control control in this.Controls)
-                            {
-                                control.Visible = false;
-                            }
-
-                            if (players[clientId - 1].Text == "0")
-                            {
-                                IDcard.Text = "you win";
-                                IDcard.Visible = true;
-                            }
-                            else
-                            {
-                                IDcard.Text = "you lost";
-                                IDcard.Visible = true;
-                            }
-                            PlayAgain.Visible=true;
-                            if (writer != null&&clientId!=0)
-                            {
-                                writer.WriteLineAsync($"Exit: {ten}, {mk}");
-                                writer.Flush();
-                            }
-                            // Đóng kết nối khi đóng form
-                            if (client != null)
-                                client.Close();
-                            cancellationTokenSource.Cancel();
-                        }
-                    }
 
                 }
             }
@@ -514,6 +529,7 @@ namespace UNO_V2
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
+
             PictureBox pictureBox = sender as PictureBox;
             string name = pictureBox.Name.Replace("pictureBox", "");
 
@@ -534,8 +550,9 @@ namespace UNO_V2
                             pictureBoxStates[pictureBox] = false;
                             pictureBox.BackColor = Color.Transparent; // Loại bỏ viền vàng
                             card.RemoveAt(index);
+                            var players = new[] { player1, player2, player3, player4 };
 
-                            if (selectedCard[0] == 'D')
+                            if (selectedCard[0] == 'D'&&players[clientId-1].Text!="1")
                                 SendColorToServer(selectedCard);
                             else
                                 SendCardToServer(selectedCard);

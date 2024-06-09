@@ -127,7 +127,7 @@ public class Server2
         serverSocket.Bind(new IPEndPoint(IPAddress.Any, 50000));
 
         // Start listening for incoming connections
-        serverSocket.Listen(4);
+        serverSocket.Listen();
 
         isServerRunning = true;
         serverThread = new Thread(ServerThread);
@@ -546,7 +546,7 @@ public class Server2
         if (card == "RDP" || card == "YDP" || card == "BDP" || card == "GDP" || card == "DP")
         {
             room.Plus += 4;
-
+            SendIdplay(room);
             SendPlus(room, card);
         }
 
@@ -554,6 +554,7 @@ public class Server2
         {
             room.Plus += 2;
             SendPlus(room, card);
+            SendIdplay(room);
         }
         else
         {

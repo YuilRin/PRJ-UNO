@@ -43,7 +43,7 @@
             back = new Button();
             draw = new Button();
             PlusTable = new TextBox();
-            label3 = new Label();
+            Cong = new Label();
             LastCard = new PictureBox();
             lbPlayer3 = new Label();
             lbLastCard = new Label();
@@ -120,9 +120,10 @@
             pictureBox1.Location = new Point(74, 280);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 164);
+            pictureBox1.Size = new Size(100, 159);
             pictureBox1.TabIndex = 19;
             pictureBox1.TabStop = false;
+            pictureBox1.Visible = false;
             pictureBox1.Click += PictureBox_Click;
             // 
             // pictureBox2
@@ -130,9 +131,10 @@
             pictureBox2.Location = new Point(180, 280);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(100, 164);
+            pictureBox2.Size = new Size(100, 159);
             pictureBox2.TabIndex = 19;
             pictureBox2.TabStop = false;
+            pictureBox2.Visible = false;
             pictureBox2.Click += PictureBox_Click;
             // 
             // pictureBox3
@@ -140,9 +142,10 @@
             pictureBox3.Location = new Point(286, 280);
             pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(100, 164);
+            pictureBox3.Size = new Size(100, 159);
             pictureBox3.TabIndex = 19;
             pictureBox3.TabStop = false;
+            pictureBox3.Visible = false;
             pictureBox3.Click += PictureBox_Click;
             // 
             // pictureBox4
@@ -150,9 +153,10 @@
             pictureBox4.Location = new Point(392, 280);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(100, 164);
+            pictureBox4.Size = new Size(100, 159);
             pictureBox4.TabIndex = 19;
             pictureBox4.TabStop = false;
+            pictureBox4.Visible = false;
             pictureBox4.Click += PictureBox_Click;
             // 
             // pictureBox5
@@ -160,9 +164,10 @@
             pictureBox5.Location = new Point(498, 280);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(100, 164);
+            pictureBox5.Size = new Size(100, 159);
             pictureBox5.TabIndex = 19;
             pictureBox5.TabStop = false;
+            pictureBox5.Visible = false;
             pictureBox5.Click += PictureBox_Click;
             // 
             // pictureBox6
@@ -170,9 +175,10 @@
             pictureBox6.Location = new Point(604, 280);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(100, 164);
+            pictureBox6.Size = new Size(100, 159);
             pictureBox6.TabIndex = 19;
             pictureBox6.TabStop = false;
+            pictureBox6.Visible = false;
             pictureBox6.Click += PictureBox_Click;
             // 
             // player3
@@ -192,6 +198,7 @@
             TopCard.Size = new Size(116, 173);
             TopCard.TabIndex = 19;
             TopCard.TabStop = false;
+            TopCard.Visible = false;
             // 
             // Next
             // 
@@ -239,15 +246,17 @@
             PlusTable.ReadOnly = true;
             PlusTable.Size = new Size(65, 27);
             PlusTable.TabIndex = 25;
+            PlusTable.Visible = false;
             // 
-            // label3
+            // Cong
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(339, 237);
-            label3.Name = "label3";
-            label3.Size = new Size(44, 20);
-            label3.TabIndex = 26;
-            label3.Text = "Cộng";
+            Cong.AutoSize = true;
+            Cong.Location = new Point(339, 237);
+            Cong.Name = "Cong";
+            Cong.Size = new Size(44, 20);
+            Cong.TabIndex = 26;
+            Cong.Text = "Cộng";
+            Cong.Visible = false;
             // 
             // LastCard
             // 
@@ -257,6 +266,7 @@
             LastCard.Size = new Size(61, 79);
             LastCard.TabIndex = 19;
             LastCard.TabStop = false;
+            LastCard.Visible = false;
             // 
             // lbPlayer3
             // 
@@ -294,6 +304,7 @@
             currentIndextb.ReadOnly = true;
             currentIndextb.Size = new Size(46, 27);
             currentIndextb.TabIndex = 30;
+            currentIndextb.Visible = false;
             // 
             // groupBoxp3
             // 
@@ -307,6 +318,7 @@
             groupBoxp3.Size = new Size(64, 84);
             groupBoxp3.TabIndex = 31;
             groupBoxp3.TabStop = false;
+            groupBoxp3.Visible = false;
             // 
             // groupBoxp4
             // 
@@ -320,6 +332,7 @@
             groupBoxp4.Size = new Size(64, 84);
             groupBoxp4.TabIndex = 31;
             groupBoxp4.TabStop = false;
+            groupBoxp4.Visible = false;
             // 
             // lbPlay4
             // 
@@ -351,6 +364,7 @@
             groupBoxp2.Size = new Size(64, 84);
             groupBoxp2.TabIndex = 31;
             groupBoxp2.TabStop = false;
+            groupBoxp2.Visible = false;
             // 
             // lbPlayer2
             // 
@@ -382,6 +396,7 @@
             groupBoxp1.Size = new Size(64, 84);
             groupBoxp1.TabIndex = 31;
             groupBoxp1.TabStop = false;
+            groupBoxp1.Visible = false;
             // 
             // lbPlayer1
             // 
@@ -404,7 +419,7 @@
             // Room
             // 
             Room.Enabled = false;
-            Room.Location = new Point(339, 13);
+            Room.Location = new Point(344, 13);
             Room.Name = "Room";
             Room.Size = new Size(100, 27);
             Room.TabIndex = 32;
@@ -472,7 +487,7 @@
             // isPlay1
             // 
             isPlay1.Enabled = false;
-            isPlay1.Location = new Point(74, 271);
+            isPlay1.Location = new Point(74, 220);
             isPlay1.Name = "isPlay1";
             isPlay1.Size = new Size(119, 173);
             isPlay1.TabIndex = 33;
@@ -482,7 +497,7 @@
             // isPlay2
             // 
             isPlay2.Enabled = false;
-            isPlay2.Location = new Point(246, 273);
+            isPlay2.Location = new Point(243, 220);
             isPlay2.Name = "isPlay2";
             isPlay2.Size = new Size(119, 173);
             isPlay2.TabIndex = 33;
@@ -492,7 +507,7 @@
             // isPlay3
             // 
             isPlay3.Enabled = false;
-            isPlay3.Location = new Point(416, 273);
+            isPlay3.Location = new Point(414, 220);
             isPlay3.Name = "isPlay3";
             isPlay3.Size = new Size(119, 173);
             isPlay3.TabIndex = 33;
@@ -502,7 +517,7 @@
             // isPlay4
             // 
             isPlay4.Enabled = false;
-            isPlay4.Location = new Point(585, 271);
+            isPlay4.Location = new Point(585, 220);
             isPlay4.Name = "isPlay4";
             isPlay4.Size = new Size(119, 173);
             isPlay4.TabIndex = 33;
@@ -524,6 +539,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.uno_card_red_poster_fahn507dk0y40lko;
+            BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(778, 452);
             Controls.Add(PlayAgain);
             Controls.Add(isPlay4);
@@ -547,7 +564,7 @@
             Controls.Add(Sort);
             Controls.Add(draw);
             Controls.Add(pictureBox2);
-            Controls.Add(label3);
+            Controls.Add(Cong);
             Controls.Add(pictureBox1);
             Controls.Add(back);
             Controls.Add(groupBoxp3);
@@ -608,7 +625,7 @@
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Button draw;
         private System.Windows.Forms.TextBox PlusTable;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Cong;
         private System.Windows.Forms.PictureBox LastCard;
         private System.Windows.Forms.Label lbPlayer3;
         private System.Windows.Forms.Label lbLastCard;

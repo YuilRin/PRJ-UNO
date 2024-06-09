@@ -16,3 +16,4 @@ E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\refint\UNO_V2.dll
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.pdb
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.genruntimeconfig.cache
 E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\ref\UNO_V2.dll
+E:\Linh\PRJ-UNO\UNO\UNO_V2\obj\Debug\net8.0-windows\UNO_V2.Properties.Resources.resources
