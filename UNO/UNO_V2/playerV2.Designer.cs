@@ -48,11 +48,12 @@
             lbPlayer3 = new Label();
             lbLastCard = new Label();
             IDcard = new TextBox();
-            currentIndextb = new TextBox();
             groupBoxp3 = new GroupBox();
+            isPlay3 = new Button();
             groupBoxp4 = new GroupBox();
-            lbPlay4 = new Label();
+            lbPlayer4 = new Label();
             player4 = new TextBox();
+            isPlay2 = new Button();
             groupBoxp2 = new GroupBox();
             lbPlayer2 = new Label();
             player2 = new TextBox();
@@ -66,8 +67,6 @@
             Blue = new Button();
             Green = new Button();
             isPlay1 = new Button();
-            isPlay2 = new Button();
-            isPlay3 = new Button();
             isPlay4 = new Button();
             PlayAgain = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -117,10 +116,14 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(74, 280);
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(75, 278);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 159);
+            pictureBox1.Size = new Size(116, 173);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 19;
             pictureBox1.TabStop = false;
             pictureBox1.Visible = false;
@@ -128,10 +131,14 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(180, 280);
+            pictureBox2.BackColor = Color.Transparent;
+            pictureBox2.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(197, 278);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(100, 159);
+            pictureBox2.Size = new Size(116, 173);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 19;
             pictureBox2.TabStop = false;
             pictureBox2.Visible = false;
@@ -139,10 +146,14 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(286, 280);
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(319, 278);
             pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(100, 159);
+            pictureBox3.Size = new Size(116, 173);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 19;
             pictureBox3.TabStop = false;
             pictureBox3.Visible = false;
@@ -150,10 +161,14 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(392, 280);
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(441, 278);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(100, 159);
+            pictureBox4.Size = new Size(116, 173);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 19;
             pictureBox4.TabStop = false;
             pictureBox4.Visible = false;
@@ -161,10 +176,14 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(498, 280);
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(563, 278);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(100, 159);
+            pictureBox5.Size = new Size(116, 173);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 19;
             pictureBox5.TabStop = false;
             pictureBox5.Visible = false;
@@ -172,10 +191,15 @@
             // 
             // pictureBox6
             // 
-            pictureBox6.Location = new Point(604, 280);
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox6.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox6.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox6.Location = new Point(685, 278);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(100, 159);
+            pictureBox6.Size = new Size(116, 173);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 19;
             pictureBox6.TabStop = false;
             pictureBox6.Visible = false;
@@ -189,13 +213,18 @@
             player3.ReadOnly = true;
             player3.Size = new Size(50, 27);
             player3.TabIndex = 20;
+            player3.Text = "1";
             // 
             // TopCard
             // 
-            TopCard.Location = new Point(335, 44);
+            TopCard.BackColor = Color.Transparent;
+            TopCard.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            TopCard.BackgroundImageLayout = ImageLayout.Zoom;
+            TopCard.Location = new Point(381, 54);
             TopCard.Margin = new Padding(3, 4, 3, 4);
             TopCard.Name = "TopCard";
             TopCard.Size = new Size(116, 173);
+            TopCard.SizeMode = PictureBoxSizeMode.Zoom;
             TopCard.TabIndex = 19;
             TopCard.TabStop = false;
             TopCard.Visible = false;
@@ -203,7 +232,7 @@
             // Next
             // 
             Next.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Next.Location = new Point(710, 344);
+            Next.Location = new Point(809, 340);
             Next.Margin = new Padding(3, 4, 3, 4);
             Next.Name = "Next";
             Next.Size = new Size(61, 53);
@@ -216,7 +245,7 @@
             // back
             // 
             back.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            back.Location = new Point(7, 344);
+            back.Location = new Point(8, 340);
             back.Margin = new Padding(3, 4, 3, 4);
             back.Name = "back";
             back.Size = new Size(61, 53);
@@ -228,10 +257,10 @@
             // 
             // draw
             // 
-            draw.Location = new Point(660, 232);
+            draw.Location = new Point(783, 230);
             draw.Margin = new Padding(3, 4, 3, 4);
             draw.Name = "draw";
-            draw.Size = new Size(75, 29);
+            draw.Size = new Size(70, 29);
             draw.TabIndex = 23;
             draw.Text = "draw";
             draw.UseVisualStyleBackColor = true;
@@ -240,7 +269,7 @@
             // 
             // PlusTable
             // 
-            PlusTable.Location = new Point(386, 234);
+            PlusTable.Location = new Point(432, 232);
             PlusTable.Margin = new Padding(3, 4, 3, 4);
             PlusTable.Name = "PlusTable";
             PlusTable.ReadOnly = true;
@@ -251,7 +280,7 @@
             // Cong
             // 
             Cong.AutoSize = true;
-            Cong.Location = new Point(339, 237);
+            Cong.Location = new Point(381, 235);
             Cong.Name = "Cong";
             Cong.Size = new Size(44, 20);
             Cong.TabIndex = 26;
@@ -260,10 +289,14 @@
             // 
             // LastCard
             // 
-            LastCard.Location = new Point(667, 146);
+            LastCard.BackColor = Color.Transparent;
+            LastCard.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            LastCard.BackgroundImageLayout = ImageLayout.Zoom;
+            LastCard.Location = new Point(783, 123);
             LastCard.Margin = new Padding(3, 4, 3, 4);
             LastCard.Name = "LastCard";
-            LastCard.Size = new Size(61, 79);
+            LastCard.Size = new Size(70, 104);
+            LastCard.SizeMode = PictureBoxSizeMode.Zoom;
             LastCard.TabIndex = 19;
             LastCard.TabStop = false;
             LastCard.Visible = false;
@@ -273,14 +306,15 @@
             lbPlayer3.AutoSize = true;
             lbPlayer3.Location = new Point(3, 22);
             lbPlayer3.Name = "lbPlayer3";
-            lbPlayer3.Size = new Size(57, 20);
+            lbPlayer3.Size = new Size(61, 20);
             lbPlayer3.TabIndex = 26;
             lbPlayer3.Text = "Player3";
             // 
             // lbLastCard
             // 
             lbLastCard.AutoSize = true;
-            lbLastCard.Location = new Point(662, 122);
+            lbLastCard.BackColor = SystemColors.Control;
+            lbLastCard.Location = new Point(779, 99);
             lbLastCard.Name = "lbLastCard";
             lbLastCard.Size = new Size(74, 20);
             lbLastCard.TabIndex = 26;
@@ -289,28 +323,20 @@
             // 
             // IDcard
             // 
-            IDcard.Location = new Point(11, 120);
+            IDcard.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            IDcard.Location = new Point(121, 113);
             IDcard.Margin = new Padding(3, 4, 3, 4);
             IDcard.Name = "IDcard";
-            IDcard.Size = new Size(100, 27);
+            IDcard.Size = new Size(627, 114);
             IDcard.TabIndex = 29;
             IDcard.Visible = false;
             // 
-            // currentIndextb
-            // 
-            currentIndextb.Location = new Point(715, 297);
-            currentIndextb.Margin = new Padding(3, 4, 3, 4);
-            currentIndextb.Name = "currentIndextb";
-            currentIndextb.ReadOnly = true;
-            currentIndextb.Size = new Size(46, 27);
-            currentIndextb.TabIndex = 30;
-            currentIndextb.Visible = false;
-            // 
             // groupBoxp3
             // 
-            groupBoxp3.BackColor = SystemColors.Control;
+            groupBoxp3.BackColor = Color.Transparent;
             groupBoxp3.Controls.Add(lbPlayer3);
             groupBoxp3.Controls.Add(player3);
+            groupBoxp3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBoxp3.Location = new Point(539, 175);
             groupBoxp3.Margin = new Padding(3, 4, 3, 4);
             groupBoxp3.Name = "groupBoxp3";
@@ -318,30 +344,44 @@
             groupBoxp3.Size = new Size(64, 84);
             groupBoxp3.TabIndex = 31;
             groupBoxp3.TabStop = false;
+            groupBoxp3.Text = "ID: 3";
             groupBoxp3.Visible = false;
+            // 
+            // isPlay3
+            // 
+            isPlay3.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            isPlay3.BackgroundImageLayout = ImageLayout.Zoom;
+            isPlay3.Enabled = false;
+            isPlay3.Location = new Point(480, 159);
+            isPlay3.Name = "isPlay3";
+            isPlay3.Size = new Size(119, 173);
+            isPlay3.TabIndex = 33;
+            isPlay3.UseVisualStyleBackColor = true;
             // 
             // groupBoxp4
             // 
-            groupBoxp4.BackColor = SystemColors.Control;
-            groupBoxp4.Controls.Add(lbPlay4);
+            groupBoxp4.BackColor = Color.Transparent;
+            groupBoxp4.Controls.Add(lbPlayer4);
             groupBoxp4.Controls.Add(player4);
-            groupBoxp4.Location = new Point(177, 175);
+            groupBoxp4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBoxp4.Location = new Point(264, 175);
             groupBoxp4.Margin = new Padding(3, 4, 3, 4);
             groupBoxp4.Name = "groupBoxp4";
             groupBoxp4.Padding = new Padding(3, 4, 3, 4);
             groupBoxp4.Size = new Size(64, 84);
             groupBoxp4.TabIndex = 31;
             groupBoxp4.TabStop = false;
+            groupBoxp4.Text = "ID: 4";
             groupBoxp4.Visible = false;
             // 
-            // lbPlay4
+            // lbPlayer4
             // 
-            lbPlay4.AutoSize = true;
-            lbPlay4.Location = new Point(3, 22);
-            lbPlay4.Name = "lbPlay4";
-            lbPlay4.Size = new Size(57, 20);
-            lbPlay4.TabIndex = 26;
-            lbPlay4.Text = "Player4";
+            lbPlayer4.AutoSize = true;
+            lbPlayer4.Location = new Point(3, 22);
+            lbPlayer4.Name = "lbPlayer4";
+            lbPlayer4.Size = new Size(61, 20);
+            lbPlayer4.TabIndex = 26;
+            lbPlayer4.Text = "Player4";
             // 
             // player4
             // 
@@ -351,12 +391,25 @@
             player4.ReadOnly = true;
             player4.Size = new Size(50, 27);
             player4.TabIndex = 20;
+            player4.Text = "1";
+            // 
+            // isPlay2
+            // 
+            isPlay2.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            isPlay2.BackgroundImageLayout = ImageLayout.Zoom;
+            isPlay2.Enabled = false;
+            isPlay2.Location = new Point(267, 159);
+            isPlay2.Name = "isPlay2";
+            isPlay2.Size = new Size(119, 173);
+            isPlay2.TabIndex = 33;
+            isPlay2.UseVisualStyleBackColor = true;
             // 
             // groupBoxp2
             // 
-            groupBoxp2.BackColor = SystemColors.Control;
+            groupBoxp2.BackColor = Color.Transparent;
             groupBoxp2.Controls.Add(lbPlayer2);
             groupBoxp2.Controls.Add(player2);
+            groupBoxp2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBoxp2.Location = new Point(539, 13);
             groupBoxp2.Margin = new Padding(3, 4, 3, 4);
             groupBoxp2.Name = "groupBoxp2";
@@ -364,6 +417,7 @@
             groupBoxp2.Size = new Size(64, 84);
             groupBoxp2.TabIndex = 31;
             groupBoxp2.TabStop = false;
+            groupBoxp2.Text = "ID: 2";
             groupBoxp2.Visible = false;
             // 
             // lbPlayer2
@@ -371,7 +425,7 @@
             lbPlayer2.AutoSize = true;
             lbPlayer2.Location = new Point(3, 22);
             lbPlayer2.Name = "lbPlayer2";
-            lbPlayer2.Size = new Size(57, 20);
+            lbPlayer2.Size = new Size(61, 20);
             lbPlayer2.TabIndex = 26;
             lbPlayer2.Text = "Player2";
             // 
@@ -383,19 +437,23 @@
             player2.ReadOnly = true;
             player2.Size = new Size(50, 27);
             player2.TabIndex = 20;
+            player2.Text = "1";
             // 
             // groupBoxp1
             // 
-            groupBoxp1.BackColor = SystemColors.Control;
+            groupBoxp1.BackColor = Color.Transparent;
+            groupBoxp1.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
             groupBoxp1.Controls.Add(lbPlayer1);
             groupBoxp1.Controls.Add(player1);
-            groupBoxp1.Location = new Point(177, 13);
+            groupBoxp1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBoxp1.Location = new Point(264, 13);
             groupBoxp1.Margin = new Padding(3, 4, 3, 4);
             groupBoxp1.Name = "groupBoxp1";
             groupBoxp1.Padding = new Padding(3, 4, 3, 4);
             groupBoxp1.Size = new Size(64, 84);
             groupBoxp1.TabIndex = 31;
             groupBoxp1.TabStop = false;
+            groupBoxp1.Text = "ID: 1";
             groupBoxp1.Visible = false;
             // 
             // lbPlayer1
@@ -403,7 +461,7 @@
             lbPlayer1.AutoSize = true;
             lbPlayer1.Location = new Point(3, 22);
             lbPlayer1.Name = "lbPlayer1";
-            lbPlayer1.Size = new Size(57, 20);
+            lbPlayer1.Size = new Size(61, 20);
             lbPlayer1.TabIndex = 26;
             lbPlayer1.Text = "Player1";
             // 
@@ -415,14 +473,17 @@
             player1.ReadOnly = true;
             player1.Size = new Size(50, 27);
             player1.TabIndex = 20;
+            player1.Text = "1";
             // 
             // Room
             // 
             Room.Enabled = false;
-            Room.Location = new Point(344, 13);
+            Room.Font = new Font("Segoe UI Variable Display", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Room.Location = new Point(381, 12);
             Room.Name = "Room";
-            Room.Size = new Size(100, 27);
+            Room.Size = new Size(116, 27);
             Room.TabIndex = 32;
+            Room.Text = "Room";
             // 
             // Sort
             // 
@@ -439,10 +500,10 @@
             // Yellow
             // 
             Yellow.BackColor = Color.Yellow;
-            Yellow.Location = new Point(655, 30);
+            Yellow.Location = new Point(659, 139);
             Yellow.Margin = new Padding(3, 4, 3, 4);
             Yellow.Name = "Yellow";
-            Yellow.Size = new Size(45, 30);
+            Yellow.Size = new Size(30, 30);
             Yellow.TabIndex = 28;
             Yellow.UseVisualStyleBackColor = false;
             Yellow.Visible = false;
@@ -451,10 +512,10 @@
             // Red
             // 
             Red.BackColor = Color.Red;
-            Red.Location = new Point(710, 30);
+            Red.Location = new Point(695, 138);
             Red.Margin = new Padding(3, 4, 3, 4);
             Red.Name = "Red";
-            Red.Size = new Size(45, 30);
+            Red.Size = new Size(30, 30);
             Red.TabIndex = 28;
             Red.UseVisualStyleBackColor = false;
             Red.Visible = false;
@@ -463,10 +524,10 @@
             // Blue
             // 
             Blue.BackColor = Color.Blue;
-            Blue.Location = new Point(710, 67);
+            Blue.Location = new Point(695, 175);
             Blue.Margin = new Padding(3, 4, 3, 4);
             Blue.Name = "Blue";
-            Blue.Size = new Size(45, 30);
+            Blue.Size = new Size(30, 30);
             Blue.TabIndex = 28;
             Blue.UseVisualStyleBackColor = false;
             Blue.Visible = false;
@@ -475,10 +536,10 @@
             // Green
             // 
             Green.BackColor = Color.Lime;
-            Green.Location = new Point(655, 67);
+            Green.Location = new Point(659, 176);
             Green.Margin = new Padding(3, 4, 3, 4);
             Green.Name = "Green";
-            Green.Size = new Size(45, 30);
+            Green.Size = new Size(30, 30);
             Green.TabIndex = 28;
             Green.UseVisualStyleBackColor = false;
             Green.Visible = false;
@@ -486,52 +547,35 @@
             // 
             // isPlay1
             // 
+            isPlay1.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            isPlay1.BackgroundImageLayout = ImageLayout.Zoom;
             isPlay1.Enabled = false;
-            isPlay1.Location = new Point(74, 220);
+            isPlay1.Location = new Point(75, 159);
             isPlay1.Name = "isPlay1";
             isPlay1.Size = new Size(119, 173);
             isPlay1.TabIndex = 33;
-            isPlay1.Text = "Player1";
             isPlay1.UseVisualStyleBackColor = true;
-            // 
-            // isPlay2
-            // 
-            isPlay2.Enabled = false;
-            isPlay2.Location = new Point(243, 220);
-            isPlay2.Name = "isPlay2";
-            isPlay2.Size = new Size(119, 173);
-            isPlay2.TabIndex = 33;
-            isPlay2.Text = "Player2";
-            isPlay2.UseVisualStyleBackColor = true;
-            // 
-            // isPlay3
-            // 
-            isPlay3.Enabled = false;
-            isPlay3.Location = new Point(414, 220);
-            isPlay3.Name = "isPlay3";
-            isPlay3.Size = new Size(119, 173);
-            isPlay3.TabIndex = 33;
-            isPlay3.Text = "Player3";
-            isPlay3.UseVisualStyleBackColor = true;
             // 
             // isPlay4
             // 
+            isPlay4.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
+            isPlay4.BackgroundImageLayout = ImageLayout.Zoom;
             isPlay4.Enabled = false;
-            isPlay4.Location = new Point(585, 220);
+            isPlay4.Location = new Point(685, 159);
             isPlay4.Name = "isPlay4";
             isPlay4.Size = new Size(119, 173);
             isPlay4.TabIndex = 33;
-            isPlay4.Text = "Player4";
             isPlay4.UseVisualStyleBackColor = true;
             // 
             // PlayAgain
             // 
-            PlayAgain.Location = new Point(533, 137);
+            PlayAgain.BackColor = Color.Transparent;
+            PlayAgain.Location = new Point(770, 21);
             PlayAgain.Name = "PlayAgain";
             PlayAgain.Size = new Size(94, 29);
             PlayAgain.TabIndex = 34;
             PlayAgain.Text = "PlayAgain";
-            PlayAgain.UseVisualStyleBackColor = true;
+            PlayAgain.UseVisualStyleBackColor = false;
             PlayAgain.Visible = false;
             PlayAgain.Click += PlayAgain_Click;
             // 
@@ -541,11 +585,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.uno_card_red_poster_fahn507dk0y40lko;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(778, 452);
+            ClientSize = new Size(882, 496);
             Controls.Add(PlayAgain);
             Controls.Add(isPlay4);
-            Controls.Add(isPlay3);
             Controls.Add(isPlay2);
+            Controls.Add(isPlay3);
             Controls.Add(isPlay1);
             Controls.Add(Green);
             Controls.Add(Blue);
@@ -554,7 +598,6 @@
             Controls.Add(Yellow);
             Controls.Add(groupBoxp2);
             Controls.Add(Room);
-            Controls.Add(currentIndextb);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
             Controls.Add(IDcard);
@@ -630,10 +673,9 @@
         private System.Windows.Forms.Label lbPlayer3;
         private System.Windows.Forms.Label lbLastCard;
         private System.Windows.Forms.TextBox IDcard;
-        private System.Windows.Forms.TextBox currentIndextb;
         private System.Windows.Forms.GroupBox groupBoxp3;
         private System.Windows.Forms.GroupBox groupBoxp4;
-        private System.Windows.Forms.Label lbPlay4;
+        private System.Windows.Forms.Label lbPlayer4;
         private System.Windows.Forms.TextBox player4;
         private System.Windows.Forms.GroupBox groupBoxp2;
         private System.Windows.Forms.Label lbPlayer2;

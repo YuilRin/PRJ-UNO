@@ -124,7 +124,7 @@ public class Server2
         serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         // Bind the socket to a specific IP address and port
-        serverSocket.Bind(new IPEndPoint(IPAddress.Any, 50000));
+        serverSocket.Bind(new IPEndPoint(IPAddress.Any, 45000));
 
         // Start listening for incoming connections
         serverSocket.Listen();
@@ -250,7 +250,7 @@ public class Server2
                         Room room = FindRoomByClientSocket(clientSocket);
                         if (room != null)
                         {
-
+                           
                             room.ClientIds.TryGetValue(clientSocket, out int Id);
                             room.CountBG[Id]=1;
                             room.CountBGT=room.CountBG[1]+room.CountBG[2]+room.CountBG[3]+room.CountBG[4];
@@ -270,19 +270,29 @@ public class Server2
                                 {
                                     using (NetworkStream stream2 = new NetworkStream(clSocket))
                                     using (StreamWriter writer2 = new StreamWriter(stream2))
+                                    {
                                         for (int i = 0; i < 6; i++)
                                             await SendUnoCards(writer2, room);
+                                        string allPlayer = string.Join(";", clientInfo.Select(player =>
+                                                 $" {player.Key}, {player.Value.clientId}"));
+
+                                        writer2.WriteLine("hi:"+allPlayer);
+                                        
+                                        writer2.Flush();
+                                    }
                                 }
                                 room.beg=1;
                                 SendUnoCardsTop(room, "");
                                 for (int i = 0; i < 4; i++)
                                     room.Idcards[i] += 6;
                                 SendIdplay(room);
+                                
                             }
-
-                            // MessageBox.Show(room.RoomName+room.PlayerCount);
-                            // await writer.WriteLineAsync("LoginSuccessful");
                         }
+                        string allPlayerInfo = string.Join(";", clientInfo.Select(player =>
+                                                 $" {player.Key}, {player.Value.clientId}"));
+
+                                        Console.WriteLine("hi:"+allPlayerInfo);
                     }
                     else if (request == "draw")
                     {

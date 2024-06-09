@@ -44,9 +44,9 @@ namespace UNO_V2
         {
             try
             {
-                string t = "127.0.0.1";
+                string t = IpTb.Text;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await client.ConnectAsync(IPAddress.Parse(t), 50000); // Thay đổi địa chỉ IP và cổng nếu cần
+                await client.ConnectAsync(IPAddress.Parse(t), 45000); // Thay đổi địa chỉ IP và cổng nếu cần
                 networkStream = new NetworkStream(client);
                 reader = new StreamReader(networkStream);
                 writer = new StreamWriter(networkStream) { AutoFlush = true };
@@ -64,7 +64,7 @@ namespace UNO_V2
                     }
                     if (messagee=="LoginSuccessful")
                     {
-                        playerV2 a = new playerV2(NameTb.Text);
+                        playerV2 a = new playerV2(NameTb.Text,IpTb.Text);
                         a.Show();
                         
                         i=0;

@@ -76,6 +76,7 @@
             IpTb.Name = "IpTb";
             IpTb.Size = new Size(117, 27);
             IpTb.TabIndex = 1;
+            IpTb.Text = "127.0.0.1";
             // 
             // Login
             // 

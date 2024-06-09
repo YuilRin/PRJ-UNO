@@ -63,6 +63,16 @@ namespace UNO_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pngtree_uno_card_png_image_9101654 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-uno-card-png-image_9101654", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap uno_card_red_poster_fahn507dk0y40lko {
             get {
                 object obj = ResourceManager.GetObject("uno-card-red-poster-fahn507dk0y40lko", resourceCulture);

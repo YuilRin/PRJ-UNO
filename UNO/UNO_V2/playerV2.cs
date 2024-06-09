@@ -30,7 +30,7 @@ namespace UNO_V2
         private string cardTop;
         private List<string> card = new List<string>();
         private int Idplay;
-        public string IpServer = "127.0.0.1";
+        public string IpServer;//= "127.0.0.1";
         private int plus = 0;
         bool isBegin = false;
         public playerV2(string namet)
@@ -40,14 +40,17 @@ namespace UNO_V2
             cancellationToken = cancellationTokenSource.Token;
             LoadCardImages();
             NameBox.Text = namet;
-            foreach (Control ctr in this.Controls)
-            {
-                if (ctr is PictureBox)
-                {
-                    PictureBox pic = (PictureBox)ctr;
-                    pic.SizeMode =PictureBoxSizeMode.Zoom;
-                }
-            }
+           
+        }
+        public playerV2(string namet,string ip)
+        {
+            IpServer=ip;
+            InitializeComponent();
+            cancellationTokenSource = new CancellationTokenSource();
+            cancellationToken = cancellationTokenSource.Token;
+            LoadCardImages();
+            NameBox.Text = namet;
+            
         }
 
         private bool isConnected = false;
@@ -88,10 +91,7 @@ namespace UNO_V2
                     {
                         foreach (Control ctr in this.Controls)
                         {
-                            if (ctr is Button cs)
-                            {
-                                cs.Visible = true;
-                            }
+                            
                             if (ctr is PictureBox pt)
                             {
                                 pt.Visible = true;
@@ -109,17 +109,15 @@ namespace UNO_V2
                         isPlay2.Visible=false;
                         isPlay3.Visible=false;
                         isPlay4.Visible=false;
-                        Green.Visible=false;
-                        Red.Visible=false;
-                        Blue.Visible=false;
-                        Yellow.Visible=false;
-                        Ready.Visible=false;
                         lbLastCard.Visible=true;
-                        currentIndextb.Visible=true;
+                        draw.Visible=true;
                         Cong.Visible=true;
                         PlusTable.Visible=true;
+                        back.Visible=true;
+                        Next.Visible=true;
+                        Sort.Visible=true;
                         #endregion
-
+                        isBegin=true;
                     }
                     TopCard.Image = cardImages[cardName];
 
@@ -179,7 +177,7 @@ namespace UNO_V2
             {
                 ten=NameBox.Text;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await client.ConnectAsync(IPAddress.Parse(IpServer), 50000); // Thay đổi địa chỉ IP và cổng nếu cần
+                await client.ConnectAsync(IPAddress.Parse(IpServer), 45000); // Thay đổi địa chỉ IP và cổng nếu cần
                 networkStream = new NetworkStream(client);
                 reader = new StreamReader(networkStream);
                 writer = new StreamWriter(networkStream) { AutoFlush = true };
@@ -288,6 +286,36 @@ namespace UNO_V2
                         }
 
                     }
+                    else if (messagee.StartsWith("hi:"))
+                    {
+                        string[] playerInfo = messagee.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        if (playerInfo.Length >= 8)
+                        {
+                            string player1Id = playerInfo[1].Trim();
+                            string player2Id = playerInfo[3].Trim();
+                            string player3Id = playerInfo[5].Trim();
+                            string player4Id = playerInfo[7].Trim();
+
+                            if (player1Id == "1")
+                            {
+                                lbPlayer1.Text = playerInfo[0].Trim().Substring("hi:".Length); // Cập nhật thông tin cho player 1
+                            }
+                            if (player2Id == "2")
+                            {
+                                lbPlayer2.Text = playerInfo[2].Trim(); // Cập nhật thông tin cho player 2
+                            }
+                            if (player3Id == "3")
+                            {
+                                lbPlayer3.Text = playerInfo[4].Trim(); // Cập nhật thông tin cho player 3
+                            }
+                            if (player4Id == "4")
+                            {
+                                lbPlayer4.Text = playerInfo[6].Trim(); // Cập nhật thông tin cho player 4
+                            }
+                        }
+                    }
+
                     else if (messagee.StartsWith("IDroom: "))
                     {
                         Room.Text = messagee.Split(':')[1].Trim();
@@ -298,7 +326,7 @@ namespace UNO_V2
                     {
                         foreach (Control control in this.Controls)
                             if (control is GroupBox)
-                                control.BackColor = Color.White;
+                                control.BackColor = Color.Transparent;
 
                         Idplay = int.Parse(messagee.Split(':')[1].Trim());
 
@@ -333,6 +361,7 @@ namespace UNO_V2
                         string cardName = messagee.Split(':')[1].Trim();
 
                         LastCard.Image = cardImages[cardName];
+                        
                         card.Add(cardName);
                         currentIndex=0;
                         DisplayFirstSixCards();
@@ -348,7 +377,6 @@ namespace UNO_V2
                             plus = int.Parse(parts[2]);
                             PlusTable.Text=plus.ToString();
                         }
-
                     }
 
 
@@ -489,7 +517,7 @@ namespace UNO_V2
         // Hàm cập nhật hình ảnh trên PictureBox
         private void UpdatePictureBoxes()
         {
-            currentIndextb.Text=currentIndex.ToString();
+           // currentIndextb.Text=currentIndex.ToString();
             for (int i = 0; i < 6; i++)
             {
                 PictureBox pictureBox = Controls.Find("pictureBox" +(i + 1), true)[0] as PictureBox;
@@ -503,6 +531,7 @@ namespace UNO_V2
                     {
                         // Trường hợp không còn đủ 6 lá bài để hiển thị
                         pictureBox.Image = null;
+                        //pictureBox.BackColor = Color.Transparent;
                     }
                 }
             }
@@ -527,9 +556,11 @@ namespace UNO_V2
 
         private Dictionary<PictureBox, bool> pictureBoxStates = new Dictionary<PictureBox, bool>();
 
+        // Dictionary để lưu vị trí ban đầu của PictureBox
+        private Dictionary<PictureBox, Point> originalLocations = new Dictionary<PictureBox, Point>();
+
         private void PictureBox_Click(object sender, EventArgs e)
         {
-
             PictureBox pictureBox = sender as PictureBox;
             string name = pictureBox.Name.Replace("pictureBox", "");
 
@@ -549,19 +580,38 @@ namespace UNO_V2
                             // Bấm lần thứ hai: thực hiện hoạt động
                             pictureBoxStates[pictureBox] = false;
                             pictureBox.BackColor = Color.Transparent; // Loại bỏ viền vàng
+
+                            // Trả về vị trí ban đầu
+                            pictureBox.Location = originalLocations[pictureBox];
+
                             card.RemoveAt(index);
                             var players = new[] { player1, player2, player3, player4 };
 
-                            if (selectedCard[0] == 'D'&&players[clientId-1].Text!="1")
+                            if (selectedCard[0] == 'D' && players[clientId - 1].Text != "1")
                                 SendColorToServer(selectedCard);
                             else
                                 SendCardToServer(selectedCard);
                         }
                         else
                         {
-                            // Bấm lần đầu: thêm viền vàng
+                            // Bấm lần đầu
                             pictureBoxStates[pictureBox] = true;
-                            pictureBox.BackColor = Color.Yellow; // Thêm viền vàng
+
+                            // Đặt tất cả các PictureBox khác về trạng thái ban đầu
+                            foreach (var kvp in pictureBoxStates)
+                            {
+                                if (kvp.Key != pictureBox && kvp.Value)
+                                {
+                                    kvp.Key.BackColor = Color.Transparent;
+                                    kvp.Key.Location = originalLocations[kvp.Key];
+                                    pictureBoxStates[kvp.Key] = false;
+                                }
+                            }
+
+                            // Di chuyển PictureBox lên và thêm viền vàng
+                            originalLocations[pictureBox] = pictureBox.Location;
+                            pictureBox.Location = new Point(pictureBox.Location.X, pictureBox.Location.Y - 20);
+                          //  pictureBox.BackColor = Color.Yellow;
                         }
                     }
                     else
@@ -576,6 +626,7 @@ namespace UNO_V2
                 }
             }
         }
+
 
 
 
