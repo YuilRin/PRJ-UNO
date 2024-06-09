@@ -117,9 +117,10 @@ namespace UNO_V2
                         Next.Visible=true;
                         Sort.Visible=true;
                         #endregion
-                        isBegin=true;
+                       
                     }
                     TopCard.Image = cardImages[cardName];
+                    isBegin=true;
 
                 }
                 else
@@ -195,6 +196,7 @@ namespace UNO_V2
             {
                 while (true)
                 {
+
                     string messagee = await reader.ReadLineAsync();
                     if (messagee == null)
                     {
@@ -214,7 +216,7 @@ namespace UNO_V2
                         }
 
                         // Kiểm tra end game
-                        if (players.Any(player => player.Text == "0"))
+                        if (players.Any(player => player.Text == "0")&&isBegin)
                         {
 
                             foreach (Control control in this.Controls)
@@ -338,13 +340,9 @@ namespace UNO_V2
                             var targetGroupBox = groupBoxes[Idplay - 1];
 
                             if (Idplay == clientId)
-                            {
-                                targetGroupBox.BackColor = Color.Red;
-                            }
-                            else
-                            {
+
                                 targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
-                            }
+
                         }
                     }
 
@@ -361,7 +359,7 @@ namespace UNO_V2
                         string cardName = messagee.Split(':')[1].Trim();
 
                         LastCard.Image = cardImages[cardName];
-                        
+
                         card.Add(cardName);
                         currentIndex=0;
                         DisplayFirstSixCards();
@@ -378,6 +376,7 @@ namespace UNO_V2
                             PlusTable.Text=plus.ToString();
                         }
                     }
+
 
 
                 }
@@ -444,6 +443,7 @@ namespace UNO_V2
                 // Gửi yêu cầu "begin" đến server
                 writer.WriteLine("begin");
                 writer.Flush();
+               
                 Ready.Visible=false;
             }
             catch (Exception ex)

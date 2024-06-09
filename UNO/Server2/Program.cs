@@ -52,7 +52,7 @@ public class Room
     }
 
     // Method to read data from file and enqueue
-    public static Queue<string> ReadFileAndEnqueue(string filePath)
+    public Queue<string> ReadFileAndEnqueue(string filePath)
     {
         Queue<string> dataQueue = new Queue<string>();
         using (StreamReader reader = new StreamReader(filePath))
@@ -73,7 +73,7 @@ public class Room
     }
 
     // Method to shuffle queue elements
-    public static void ShuffleQueue(Queue<string> queue)
+    public void ShuffleQueue(Queue<string> queue)
     {
         // Convert queue to list
         List<string> dataList = new List<string>(queue);
@@ -117,7 +117,60 @@ public class Server2
         clientInfo = new Dictionary<string, (string password, int clientId)>();
         //  clientStatus = new Dictionary<string, bool>();
     }
+    private async Task SendUnoCards(StreamWriter writer, Room room)
+    {
+        if (room.DataQueue.Count == 0)
+        {
+            RefillAndShuffleQueue(room);
+        }
 
+        if (room.DataQueue.Count > 0)
+        {
+            string card = room.DataQueue.Dequeue();
+            string message = "Card: " + card;
+            await writer.WriteLineAsync(message);
+            await writer.FlushAsync();
+        }
+        else
+        {
+            room.InitializeCardQueue();
+            await SendUnoCards(writer, room);
+        }
+    }
+
+    private void RefillAndShuffleQueue(Room room)
+    {
+        while (room.DataQueue2.Count > 0)
+        {
+            room.DataQueue.Enqueue(room.DataQueue2.Dequeue());
+        }
+        ShuffleQueue(room.DataQueue);
+    }
+
+    // Assuming ShuffleQueue remains the same
+    private static void ShuffleQueue(Queue<string> queue)
+    {
+        // Convert queue to list
+        List<string> dataList = new List<string>(queue);
+        // Use Fisher-Yates algorithm to shuffle list
+        Random random = new Random();
+        int n = dataList.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            string value = dataList[k];
+            dataList[k] = dataList[n];
+            dataList[n] = value;
+        }
+        // Clear the queue
+        queue.Clear();
+        // Enqueue shuffled elements back to the queue
+        foreach (string element in dataList)
+        {
+            queue.Enqueue(element);
+        }
+    }
     public void StartServer()
     {
         // Create a socket object
@@ -164,6 +217,7 @@ public class Server2
 
                 while (isServerRunning)
                 {
+                    
                     string request = await reader.ReadLineAsync();
                     if (request == null)
                     {
@@ -289,10 +343,6 @@ public class Server2
                                 
                             }
                         }
-                        string allPlayerInfo = string.Join(";", clientInfo.Select(player =>
-                                                 $" {player.Key}, {player.Value.clientId}"));
-
-                                        Console.WriteLine("hi:"+allPlayerInfo);
                     }
                     else if (request == "draw")
                     {
@@ -321,6 +371,7 @@ public class Server2
                             if (room != null)
                             {
                                 room.PlayerCount--;
+                                  
                                 room.CountBG[Id]=0;
                                 if(room.Play==Id)
                                     room.Play = (room.Play + 1) % 4;
@@ -329,6 +380,13 @@ public class Server2
                                 room.PlayerNames.Remove(clientInfo[playerName].clientId);
                                 clientInfo.Remove(playerName);
 
+                                if (room.PlayerCount==0&&room.beg==1)
+                                {
+                                    string t = room.RoomName;
+
+                                    room=new Room(t);
+                                    // room.beg=0;
+                                }
                                 // MessageBox.Show($"Name: {playerName}, pass: {password} has exited the server.");
                             }
                         }
@@ -441,61 +499,7 @@ public class Server2
 
 
 
-    private async Task SendUnoCards(StreamWriter writer, Room room)
-    {
-        if (room.DataQueue.Count == 0)
-        {
-            RefillAndShuffleQueue(room);
-        }
-
-        if (room.DataQueue.Count > 0)
-        {
-            string card = room.DataQueue.Dequeue();
-            string message = "Card: " + card;
-            await writer.WriteLineAsync(message);
-            await writer.FlushAsync();
-        }
-        else
-        {
-            string message = "Card: No more Uno cards available.";
-            await writer.WriteLineAsync(message);
-            await writer.FlushAsync();
-        }
-    }
-
-    private void RefillAndShuffleQueue(Room room)
-    {
-        while (room.DataQueue2.Count > 0)
-        {
-            room.DataQueue.Enqueue(room.DataQueue2.Dequeue());
-        }
-        ShuffleQueue(room.DataQueue);
-    }
-
-    // Assuming ShuffleQueue remains the same
-    private static void ShuffleQueue(Queue<string> queue)
-    {
-        // Convert queue to list
-        List<string> dataList = new List<string>(queue);
-        // Use Fisher-Yates algorithm to shuffle list
-        Random random = new Random();
-        int n = dataList.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = random.Next(n + 1);
-            string value = dataList[k];
-            dataList[k] = dataList[n];
-            dataList[n] = value;
-        }
-        // Clear the queue
-        queue.Clear();
-        // Enqueue shuffled elements back to the queue
-        foreach (string element in dataList)
-        {
-            queue.Enqueue(element);
-        }
-    }
+  
 
     private void SendUnoCardsTop(Room room, string cards)
     {
