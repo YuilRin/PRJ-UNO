@@ -308,6 +308,7 @@ public class Server2
                     }
                     else if (request.StartsWith("Exit:"))
                     {
+                        
                         Room room = FindRoomByClientSocket(clientSocket);
                         string[] loginInfo = request.Split(':')[1].Trim().Split(',');
                         room.ClientIds.TryGetValue(clientSocket, out int Id);
@@ -321,6 +322,9 @@ public class Server2
                             {
                                 room.PlayerCount--;
                                 room.CountBG[Id]=0;
+                                if(room.Play==Id)
+                                    room.Play = (room.Play + 1) % 4;
+                                SendIdplay(room);
                                 room.ClientIds.Remove(clientSocket);
                                 room.PlayerNames.Remove(clientInfo[playerName].clientId);
                                 clientInfo.Remove(playerName);
@@ -372,7 +376,7 @@ public class Server2
 
     private Room FindAvailableRoom()
     {
-        Room availableRoom = rooms.Values.FirstOrDefault(room => room.PlayerCount < 4);
+        Room availableRoom = rooms.Values.FirstOrDefault(room => room.PlayerCount < 4 && room.beg==0);
         if (availableRoom == null)
         {
             string roomName = "Room" + nextRoomId++;

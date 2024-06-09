@@ -430,9 +430,10 @@ namespace UNO_V2
                 writer.WriteLineAsync($"Exit: {ten}, {mk}");
                 writer.Flush();
             }
+
+           
             // Đóng kết nối khi đóng form
-            if (client != null)
-                client.Close();
+            
             cancellationTokenSource.Cancel();
         }
 
