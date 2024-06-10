@@ -198,7 +198,6 @@
             pictureBox6.BackColor = Color.Transparent;
             pictureBox6.BackgroundImage = Properties.Resources.pngtree_uno_card_png_image_9101654;
             pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox6.BorderStyle = BorderStyle.FixedSingle;
             pictureBox6.Location = new Point(685, 278);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";

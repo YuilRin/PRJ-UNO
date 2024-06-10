@@ -90,11 +90,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Poplar Std", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Maroon;
-            label1.Location = new Point(295, 76);
+            label1.Location = new Point(276, 27);
             label1.Name = "label1";
-            label1.Size = new Size(102, 48);
+            label1.Size = new Size(148, 46);
             label1.TabIndex = 3;
             label1.Text = "LOGIN";
             // 

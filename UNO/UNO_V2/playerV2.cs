@@ -338,10 +338,11 @@ namespace UNO_V2
                         if (Idplay >= 1 && Idplay <= 4)
                         {
                             var targetGroupBox = groupBoxes[Idplay - 1];
+                          
+                                targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
 
                             if (Idplay == clientId)
-
-                                targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
+                                targetGroupBox.BackColor = Color.FromArgb(55, 255, 28);
 
                         }
                     }
@@ -588,7 +589,7 @@ namespace UNO_V2
                             card.RemoveAt(index);
                             var players = new[] { player1, player2, player3, player4 };
 
-                            if (selectedCard[0] == 'D' && players[clientId - 1].Text != "1")
+                            if (selectedCard[0] == 'D')
                                 SendColorToServer(selectedCard);
                             else
                                 SendCardToServer(selectedCard);
@@ -777,7 +778,7 @@ namespace UNO_V2
         private void PlayAgain_Click(object sender, EventArgs e)
         {
             
-            playerV2 a = new playerV2(ten);
+            playerV2 a = new playerV2(ten,IpServer);
                 a.Show();
             this.Close();
 
