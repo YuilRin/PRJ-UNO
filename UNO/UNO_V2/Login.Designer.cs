@@ -37,9 +37,9 @@
             // 
             // LoginTb
             // 
-            LoginTb.Location = new Point(65, 255);
+            LoginTb.Location = new Point(173, 251);
             LoginTb.Name = "LoginTb";
-            LoginTb.Size = new Size(135, 40);
+            LoginTb.Size = new Size(178, 46);
             LoginTb.TabIndex = 0;
             LoginTb.Text = "Login";
             LoginTb.UseVisualStyleBackColor = true;
@@ -47,7 +47,7 @@
             // 
             // NameTb
             // 
-            NameTb.Location = new Point(77, 130);
+            NameTb.Location = new Point(229, 131);
             NameTb.Name = "NameTb";
             NameTb.Size = new Size(117, 27);
             NameTb.TabIndex = 1;
@@ -55,7 +55,8 @@
             // lbName
             // 
             lbName.AutoSize = true;
-            lbName.Location = new Point(22, 133);
+            lbName.BackColor = Color.Transparent;
+            lbName.Location = new Point(173, 134);
             lbName.Name = "lbName";
             lbName.Size = new Size(49, 20);
             lbName.TabIndex = 2;
@@ -64,7 +65,8 @@
             // LbIp
             // 
             LbIp.AutoSize = true;
-            LbIp.Location = new Point(22, 197);
+            LbIp.BackColor = Color.Transparent;
+            LbIp.Location = new Point(173, 194);
             LbIp.Name = "LbIp";
             LbIp.Size = new Size(22, 20);
             LbIp.TabIndex = 2;
@@ -72,7 +74,7 @@
             // 
             // IpTb
             // 
-            IpTb.Location = new Point(77, 190);
+            IpTb.Location = new Point(229, 191);
             IpTb.Name = "IpTb";
             IpTb.Size = new Size(117, 27);
             IpTb.TabIndex = 1;
@@ -82,7 +84,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(281, 349);
+            BackgroundImage = Properties.Resources._360_F_596837086_S5NoB6VCTX47N7yeu5QCGo5VNofxA4tq;
+            ClientSize = new Size(537, 359);
             Controls.Add(LbIp);
             Controls.Add(lbName);
             Controls.Add(IpTb);

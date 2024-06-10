@@ -253,7 +253,7 @@ namespace UNO_V2
                         clientId = int.Parse(messagee.Split(':')[1].Trim());
                         if (clientId == 0)
                         {
-                            MessageBox.Show("???. bạn đã trong phòng rồi mà. Phá game à");
+                            MessageBox.Show("Hiện có người dùng tên này bạn hãy đổi tên khác");
                             this.Close();
                         }
                         UpdateClientIdLabel(clientId);
@@ -552,7 +552,7 @@ namespace UNO_V2
                 }
 
             }
-            else MessageBox.Show("Bạn bị *** à. Đây không phải lượt của bạn");
+            else MessageBox.Show("Đây không phải lượt của bạn");
         }
 
         private Dictionary<PictureBox, bool> pictureBoxStates = new Dictionary<PictureBox, bool>();
