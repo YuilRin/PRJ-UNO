@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = UNO_V2
-build_property.ProjectDir = E:\Linh\PRJ-UNO\UNO\UNO_V2\
+build_property.ProjectDir = D:\Document\UIT\HK4-LTM\pj\PRJ-UNO\UNO\UNO_V2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

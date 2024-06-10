@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Linh\\PRJ-UNO\\UNO\\Server2\\Server2.csproj": {}
+    "D:\\Document\\UIT\\HK4-LTM\\pj\\PRJ-UNO\\UNO\\Server2\\Server2.csproj": {}
   },
   "projects": {
-    "E:\\Linh\\PRJ-UNO\\UNO\\Server2\\Server2.csproj": {
+    "D:\\Document\\UIT\\HK4-LTM\\pj\\PRJ-UNO\\UNO\\Server2\\Server2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Linh\\PRJ-UNO\\UNO\\Server2\\Server2.csproj",
+        "projectUniqueName": "D:\\Document\\UIT\\HK4-LTM\\pj\\PRJ-UNO\\UNO\\Server2\\Server2.csproj",
         "projectName": "Server2",
-        "projectPath": "E:\\Linh\\PRJ-UNO\\UNO\\Server2\\Server2.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\Linh\\PRJ-UNO\\UNO\\Server2\\obj\\",
+        "projectPath": "D:\\Document\\UIT\\HK4-LTM\\pj\\PRJ-UNO\\UNO\\Server2\\Server2.csproj",
+        "packagesPath": "C:\\Users\\DELL5289\\.nuget\\packages\\",
+        "outputPath": "D:\\Document\\UIT\\HK4-LTM\\pj\\PRJ-UNO\\UNO\\Server2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\App\\Visual Studio\\tool\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL5289\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

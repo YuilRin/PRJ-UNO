@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(playerV2));
             labelClientId = new TextBox();
             NameBox = new TextBox();
             Ready = new Button();
@@ -96,6 +97,7 @@
             // 
             // NameBox
             // 
+            NameBox.Enabled = false;
             NameBox.Location = new Point(13, 13);
             NameBox.Margin = new Padding(3, 4, 3, 4);
             NameBox.Name = "NameBox";
@@ -105,13 +107,15 @@
             // 
             // Ready
             // 
+            Ready.BackColor = Color.Lime;
+            Ready.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Ready.Location = new Point(13, 88);
             Ready.Margin = new Padding(3, 4, 3, 4);
             Ready.Name = "Ready";
-            Ready.Size = new Size(75, 29);
+            Ready.Size = new Size(74, 34);
             Ready.TabIndex = 18;
             Ready.Text = "Ready";
-            Ready.UseVisualStyleBackColor = true;
+            Ready.UseVisualStyleBackColor = false;
             Ready.Click += Ready_Click;
             // 
             // pictureBox1
@@ -232,7 +236,7 @@
             // Next
             // 
             Next.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Next.Location = new Point(809, 340);
+            Next.Location = new Point(807, 340);
             Next.Margin = new Padding(3, 4, 3, 4);
             Next.Name = "Next";
             Next.Size = new Size(61, 53);
@@ -257,10 +261,11 @@
             // 
             // draw
             // 
+            draw.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             draw.Location = new Point(783, 230);
             draw.Margin = new Padding(3, 4, 3, 4);
             draw.Name = "draw";
-            draw.Size = new Size(70, 29);
+            draw.Size = new Size(70, 36);
             draw.TabIndex = 23;
             draw.Text = "draw";
             draw.UseVisualStyleBackColor = true;
@@ -269,6 +274,7 @@
             // 
             // PlusTable
             // 
+            PlusTable.Enabled = false;
             PlusTable.Location = new Point(432, 232);
             PlusTable.Margin = new Padding(3, 4, 3, 4);
             PlusTable.Name = "PlusTable";
@@ -280,9 +286,12 @@
             // Cong
             // 
             Cong.AutoSize = true;
+            Cong.BackColor = Color.Transparent;
+            Cong.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Cong.ForeColor = SystemColors.ButtonHighlight;
             Cong.Location = new Point(381, 235);
             Cong.Name = "Cong";
-            Cong.Size = new Size(44, 20);
+            Cong.Size = new Size(45, 20);
             Cong.TabIndex = 26;
             Cong.Text = "Cộng";
             Cong.Visible = false;
@@ -313,10 +322,12 @@
             // lbLastCard
             // 
             lbLastCard.AutoSize = true;
-            lbLastCard.BackColor = SystemColors.Control;
-            lbLastCard.Location = new Point(779, 99);
+            lbLastCard.BackColor = Color.Transparent;
+            lbLastCard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbLastCard.ForeColor = SystemColors.ButtonHighlight;
+            lbLastCard.Location = new Point(775, 99);
             lbLastCard.Name = "lbLastCard";
-            lbLastCard.Size = new Size(74, 20);
+            lbLastCard.Size = new Size(88, 23);
             lbLastCard.TabIndex = 26;
             lbLastCard.Text = "Lá vừa rút";
             lbLastCard.Visible = false;
@@ -329,6 +340,7 @@
             IDcard.Name = "IDcard";
             IDcard.Size = new Size(627, 114);
             IDcard.TabIndex = 29;
+            IDcard.TextAlign = HorizontalAlignment.Center;
             IDcard.Visible = false;
             // 
             // groupBoxp3
@@ -478,19 +490,20 @@
             // Room
             // 
             Room.Enabled = false;
-            Room.Font = new Font("Segoe UI Variable Display", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Room.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Room.Location = new Point(381, 12);
             Room.Name = "Room";
-            Room.Size = new Size(116, 27);
+            Room.Size = new Size(116, 24);
             Room.TabIndex = 32;
             Room.Text = "Room";
             // 
             // Sort
             // 
-            Sort.Location = new Point(38, 237);
+            Sort.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Sort.Location = new Point(8, 230);
             Sort.Margin = new Padding(3, 4, 3, 4);
             Sort.Name = "Sort";
-            Sort.Size = new Size(75, 29);
+            Sort.Size = new Size(75, 36);
             Sort.TabIndex = 23;
             Sort.Text = "Sort";
             Sort.UseVisualStyleBackColor = true;
@@ -569,12 +582,13 @@
             // 
             // PlayAgain
             // 
-            PlayAgain.BackColor = Color.Transparent;
-            PlayAgain.Location = new Point(770, 21);
+            PlayAgain.BackColor = Color.Aquamarine;
+            PlayAgain.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PlayAgain.Location = new Point(766, 21);
             PlayAgain.Name = "PlayAgain";
-            PlayAgain.Size = new Size(94, 29);
+            PlayAgain.Size = new Size(98, 42);
             PlayAgain.TabIndex = 34;
-            PlayAgain.Text = "PlayAgain";
+            PlayAgain.Text = "Play Again";
             PlayAgain.UseVisualStyleBackColor = false;
             PlayAgain.Visible = false;
             PlayAgain.Click += PlayAgain_Click;
@@ -583,7 +597,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.uno_card_red_poster_fahn507dk0y40lko;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(882, 496);
             Controls.Add(PlayAgain);
