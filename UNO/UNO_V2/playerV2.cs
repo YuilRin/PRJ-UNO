@@ -741,10 +741,13 @@ namespace UNO_V2
             string topNumber = cardTop.Substring(1);
             string cards = cardTop;
 
-            if (cardTop=="DD"||cardTop=="DP")
-                return true;
+
             if (Idplay!=clientId)
                 return false;
+
+            if (cardTop=="DD"||cardTop=="DP")
+                return true;
+            
 
             if (selectedCard=="DP")
                 return true;
