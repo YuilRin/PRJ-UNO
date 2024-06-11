@@ -40,9 +40,9 @@ namespace UNO_V2
             cancellationToken = cancellationTokenSource.Token;
             LoadCardImages();
             NameBox.Text = namet;
-           
+
         }
-        public playerV2(string namet,string ip)
+        public playerV2(string namet, string ip)
         {
             IpServer=ip;
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace UNO_V2
             cancellationToken = cancellationTokenSource.Token;
             LoadCardImages();
             NameBox.Text = namet;
-            
+
         }
 
         private bool isConnected = false;
@@ -91,11 +91,11 @@ namespace UNO_V2
                     {
                         foreach (Control ctr in this.Controls)
                         {
-                            
+
                             if (ctr is PictureBox pt)
                             {
                                 pt.Visible = true;
-                            }    
+                            }
                             if (ctr is GroupBox grp)
                             {
                                 grp.Visible = true;
@@ -117,8 +117,15 @@ namespace UNO_V2
                         Next.Visible=true;
                         Sort.Visible=true;
                         #endregion
-                       
+
                     }
+                    if(cardName!="DP"&&cardName!="DD")
+                    {
+                        Blue.Visible=false;
+                        Yellow.Visible=false;   
+                        Green.Visible=false;    
+                        Red.Visible=false;  
+                    }    
                     TopCard.Image = cardImages[cardName];
                     isBegin=true;
 
@@ -338,8 +345,8 @@ namespace UNO_V2
                         if (Idplay >= 1 && Idplay <= 4)
                         {
                             var targetGroupBox = groupBoxes[Idplay - 1];
-                          
-                                targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
+
+                            targetGroupBox.BackColor = Color.FromArgb(255, 255, 128);
 
                             if (Idplay == clientId)
                                 targetGroupBox.BackColor = Color.FromArgb(55, 255, 28);
@@ -431,9 +438,9 @@ namespace UNO_V2
                 writer.Flush();
             }
 
-           
+
             // Đóng kết nối khi đóng form
-            
+
             cancellationTokenSource.Cancel();
         }
 
@@ -444,7 +451,7 @@ namespace UNO_V2
                 // Gửi yêu cầu "begin" đến server
                 writer.WriteLine("begin");
                 writer.Flush();
-               
+
                 Ready.Visible=false;
             }
             catch (Exception ex)
@@ -519,7 +526,7 @@ namespace UNO_V2
         // Hàm cập nhật hình ảnh trên PictureBox
         private void UpdatePictureBoxes()
         {
-           // currentIndextb.Text=currentIndex.ToString();
+            // currentIndextb.Text=currentIndex.ToString();
             for (int i = 0; i < 6; i++)
             {
                 PictureBox pictureBox = Controls.Find("pictureBox" +(i + 1), true)[0] as PictureBox;
@@ -613,7 +620,7 @@ namespace UNO_V2
                             // Di chuyển PictureBox lên và thêm viền vàng
                             originalLocations[pictureBox] = pictureBox.Location;
                             pictureBox.Location = new Point(pictureBox.Location.X, pictureBox.Location.Y - 20);
-                          //  pictureBox.BackColor = Color.Yellow;
+                            //  pictureBox.BackColor = Color.Yellow;
                         }
                     }
                     else
@@ -747,7 +754,7 @@ namespace UNO_V2
 
             if (cardTop=="DD"||cardTop=="DP")
                 return true;
-            
+
 
             if (selectedCard=="DP")
                 return true;
@@ -780,9 +787,9 @@ namespace UNO_V2
 
         private void PlayAgain_Click(object sender, EventArgs e)
         {
-            
-            playerV2 a = new playerV2(ten,IpServer);
-                a.Show();
+
+            playerV2 a = new playerV2(ten, IpServer);
+            a.Show();
             this.Close();
 
         }
